@@ -1,0 +1,39 @@
+{% assign hero = site.sections | where: "_title", "Home" | first %}
+
+<!-- Slider
+		============================================= -->
+<section class="hero clearfix">
+
+	<div class="container h-100">
+
+
+
+		<div class="row h-100 d-flex align-items-center flex-row">
+
+			<div class="col-lg-8 h-100 d-flex align-self-center flex-column justify-content-center ">
+				<img class="" style="width: 60%;" src="{{ 'assets/images/logo.png' | relative_url}}" />
+
+				<h1 id="hero-title" class="400">{{ hero.heading }}</h1>
+			</div>
+		</div>
+
+
+
+		<a id="hero-button1" href="{{ hero.buttons[0].link }}"
+			class="button button-large button-border button-white button-light button-rounded capitalize notopmargin"><span>{{ hero.buttons[0].text }}</span></a><br
+			class="d-block d-sm-none">
+		<a id="hero-button2" href="{{ hero.buttons[1].link }}"
+			class="hero-action-link d-inline-block ml-2 mt-2 ml-sm-3 mt-sm-0" data-lightbox="iframe"><i
+				class="icon-play-sign"></i> {{ hero.buttons[1].text }}</a>
+
+		<svg class="waves" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="hero-waves2" d=""/></svg>
+		<svg class="waves" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="hero-waves" d=""/></svg>
+
+		<!-- <img class="waves" src="assets/images/waves.svg"> -->
+
+	</div>
+
+
+
+
+</section>

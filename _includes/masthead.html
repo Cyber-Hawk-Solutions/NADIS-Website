@@ -1,0 +1,55 @@
+<div style="height: 100vh;">
+{% if page.layout != "home" %}
+		
+		{% include hero.html %}
+
+{% endif %}
+
+<!-- <header id="header" style="overflow: hidden;" class="split-menu transparent-header dark static-sticky" data-sticky-class="semi-transparent">
+
+
+	<div id="header-wrap">
+
+		<div class="container clearfix">
+
+			<div id="primary-menu-trigger"><i class="icon-reorder"></i></div> -->
+
+			<!-- Logo ============================================= -->
+			<!-- <div id="logo" >
+				<a href="index.html" class="standard-logo"><img src="{{'assets/images/logo.png' | relative_url}}" alt="Canvas Logo"></a>
+				<a href="index.html" class="retina-logo"><img src="{{'assets/images/logo.png' | relative_url}}" alt="Canvas Logo"></a>
+			</div> -->
+			<!-- #logo end -->
+
+			<!-- include does here -->
+
+		<!-- </div>
+
+	</div>
+
+</header> -->
+<!-- #header end -->
+
+
+{% if page.layout == "home" %}
+<!-- {% for slide in page.slides %}
+      <img src="{{ slide.src }}">
+    {% endfor %} -->
+		
+		{% include hero.html %}
+
+
+{% endif %}
+
+{% if page.slug != "comingsoon" %}
+
+<h3 class="400 scroll-msg h1" ><img src="{{'assets/images/gg_arrow-long-up.svg' | relative_url }}" />Scroll</h3>
+{% endif %}
+
+</div>
+
+<div id="particles-js">
+
+</div>
+
+<div style="position: relative; display: contents;" class="clearfix"></div>

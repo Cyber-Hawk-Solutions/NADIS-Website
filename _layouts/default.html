@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 | default: 'en' }}" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body 
+    data-barba="wrapper" class="{{ page.path }} no-transition stretched layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.layout != 'home' %} {% endif %}">
+
+    {%- comment -%} {% include browser-upgrade.html %} {%- endcomment -%}
+    
+    {% include loader.html %}
+
+    <div data-barba="container" data-barba-namespace="{{page.slug}}">
+
+      {% include masthead.html %}
+
+      <div id="content" class="initial-content" >
+        {{ content }}
+      </div>      
+
+      <div class="page__footer">
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </div>
+    
+    </div>
+
+ 
+    {% include scripts.html %}
+    {% include scripts-barba.html %}
+
+
+  </body>
+</html>

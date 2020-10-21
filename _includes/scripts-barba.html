@@ -1,0 +1,302 @@
+<!-- Go To Top
+	============================================= -->
+<div id="gotoTop" class="icon-angle-up bgcolor"></div>
+
+
+<!-- External JavaScripts
+			============================================= -->
+<script src="{{'assets/js/rellax.min.js'  | relative_url }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="{{'assets/js/plugins.js' | relative_url }}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"
+	integrity="sha256-XJuslujM3cGzRZGiSi/KNSdk58uORO/mmrEQNjVtb5k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hover-effect@1.1.0/dist/hover-effect.umd.js"></script>
+<script src="{{'assets/plugins/scrollmagic/ScrollMagic.min.js'  | relative_url }}"></script>
+<script src="{{'assets/plugins/scrollmagic/debug.addIndicators.min.js'  | relative_url }}"></script>
+<script src="{{'assets/plugins/scrollmagic/animation.gsap.min.js'  | relative_url }}"></script>
+
+<script src="https://unpkg.com/@barba/core"></script>
+
+<script src="{{'assets/js/wavify.js'  | relative_url }}"></script>
+<script src="{{'assets/js/jquery.wavify.js'  | relative_url }}"></script>
+<script src="{{'assets/js/splitting.min.js'  | relative_url }}"></script>
+
+
+<!-- <script>
+			/* FADES IT OUT WHEN PAGE LOADS */
+				$('#global-spinner').addClass('fadeOut'); //UNCOMMENT ME
+		</script> -->
+
+
+<!-- ADD-ONS JS FILES -->
+<script>
+	$(function () {
+		// enter() {
+
+		// 	let barbaTl2 = gsap.timeline()
+		// 	.to(['#left-swipe', '#right-swipe'], { width: '100%', duration: 1, ease: "power2.out" })
+		// 	.to('#reveal', { opacity: 0, duration: 0.5 }, ">-0.5")
+
+		// 	return barbaTl2;
+		// }
+
+		var controller = new ScrollMagic.Controller();
+		var tl = gsap.timeline();
+
+
+		barba.init({
+
+			transitions: [{
+				name: 'default-transition',
+				leave() {
+					// create your stunning leave animation here
+
+
+					controller.destroy(true)
+					// tl.to('.text-emphasis', {autoAlpha: 1, duration: 0,  onComplete: function () {
+					gsap.killTweensOf()
+					tl.kill()
+
+					$('.text-emphasis').css("opacity", 1)
+
+					// 	}
+					// })
+
+					let barbaTl = gsap.timeline()
+						.to('#reveal', { xPercent: '-100', opacity: 1, duration: 0 })
+						.to('#reveal', { xPercent: '0', duration: 0.5 })
+						.to(['#left-swipe', '#right-swipe'], {
+							width: '0', duration: 0.5, ease: "power2.out", onComplete: function () {
+								$(window).scrollTop(0, 0); // scroll to top here
+							}
+						})
+					// .to('.text-emphasis', {autoAlpha: 1, duration: 0 })
+					// .to('#left-swipe', { top: '50vh', duration: 0 })
+					// .to('#right-swipe', { top: '50vh', duration: 0 })
+
+					return barbaTl;
+
+				}
+			}]
+		});
+
+		barba.hooks.enter((data) => {
+			tl = gsap.timeline();
+			controller = new ScrollMagic.Controller();
+
+
+
+			loadBarb(data);
+			reinitTheme();
+		});
+
+		loadBarb({});
+
+
+		particles();
+
+		function loadBarb(data) {
+
+			try {
+				console.log("B PAGE 1", data['current']['namespace'])
+			}
+			catch {
+
+			}
+			console.log("B PAGE 2", window.location.pathname)
+
+			tl.to('#global-spinner', {
+				opacity: 0, duration: 0.5, onComplete: function () {
+					$("#global-spinner").hide()
+				}
+			})
+
+			if (window.location.pathname == "/index" || window.location.pathname == "/") {
+				console.log("PAGE HOME")
+
+
+
+				//  ---- HERO  ------------------
+
+				let hometl = gsap.timeline()
+
+				.to('.hero .waves', 3, {height: '120%'})
+				.to('#hero-waves, #hero-waves2', 3, {transformOrigin:"center top" })
+
+				let heroScene = new ScrollMagic.Scene({
+					triggerElement:  '.hero',
+					triggerHook: 0,
+					duration: "100%",
+					pushFollowers: true
+				})
+				.setTween(hometl)
+				.setPin('.hero')
+				.addIndicators()
+				.addTo(controller)
+				
+				// ---- ABOUT SECTION --------------
+
+
+				let title = document.querySelector('.about-title');
+				let lines = Splitting({ target: title, by: 'lines' });
+
+				lines.forEach((splitResult) => {
+					const wrappedLines = splitResult.lines.map((wordsArr) => `
+					<h2 class="t400 ls0 nott mb-3 font-primary text-center split-line" style="overflow:hidden">
+						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+					</span>`).join('')}
+					</h2>`).join('');
+					splitResult.el.innerHTML = wrappedLines;
+				})
+				
+				let emphasisWords = ['proactive', 'solutions', 'Natural', 'Disturbances', 'Caribbean']
+
+				emphasisWords.forEach(function(word) {
+					$(`.about-title span:contains(${word})`).addClass('emphasis-word')
+				})
+
+
+				let aboutTl = gsap.timeline()
+
+				.to('#about-waves', 3, {fill: '#CB0808'})
+				.fromTo('.word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-2")
+				.to('.emphasis-word', 1, {fontWeight:700, color: '#ED1C24', stagger: 0.1}, ">-1.25" )			
+				.from('.about-subtitle h3', 1, {y:150, overflow:'hidden'}, ">-1")
+
+
+				let aboutScene = new ScrollMagic.Scene({
+					triggerElement:  '.section-about',
+					triggerHook: 0,
+					duration: "100%"
+				})
+
+				.setTween(aboutTl)
+				.setPin('.section-about')
+				.addIndicators()
+				.addTo(controller)
+
+
+				
+			// 	tl.to(['#left-swipe', '#right-swipe'], { width: 0, duration: 2, ease: "power2.out" }, "<0")
+			// 	tl.to('#left-swipe', { top: '50vh', duration: 0 })
+			// 	tl.to('#right-swipe', { bottom: '50vh', duration: 0 })
+			// 	tl.to(['#left-swipe', '#right-swipe'], { width: '100%', duration: 1, ease: "power2.out" })
+				tl.to('#reveal', { opacity: 0, duration: 0.5 }, ">-0.5")
+			// 	tl.fromTo('#slider', { filter: "saturate(0.5) blur(4px)" }, { filter: "saturate(1) blur(0px)", duration: 0.5, ease: "power1.out" })
+			// 	tl.from('#hero-button1', { opacity: 0, duration: 0.5, ease: "power2.out" }, "<0")
+			// 	tl.from('#hero-title', { opacity: 0, y: +100, duration: 0.5, ease: "power1.out" }, "<0.3")
+			// 	tl.from('#header-wrap', { width: 0, duration: 0.5, ease: "power2.out" })
+			// } else {
+
+			// 	console.log("PAGE INNER")
+			// 	tl.to(['#left-swipe', '#right-swipe'], { width: 0, duration: 0.5, ease: "power2.out" }, "<0")
+			// 	tl.to('#left-swipe', { top: '50vh', duration: 0 })
+			// 	tl.to('#right-swipe', { bottom: '50vh', duration: 0 })
+			// 	tl.to(['#left-swipe', '#right-swipe'], { width: '100%', duration: 0.7, ease: "power2.out" })
+			// 	tl.to('#reveal', { opacity: 0, duration: 0.2 }, ">-0.1")
+			// 	tl.from('#slider strong', { top: +300, duration: 1, stagger: 0.2 }, "<0.3")
+			// 	tl.fromTo('#slider strong', { opacity: 0 }, {
+			// 		opacity: 1, duration: 1, stagger: 0.2, onComplete: function () {
+			// 			$('.text-blend strong').css('opacity', '0')
+			// 		}
+			// 	}, "<0")
+			}
+
+
+			tl.from('#primary-menu>ul>li', { opacity: 0, x: +170, stagger: 0.2, duration: 0.5, ease: "power1.out" })
+			tl.from('#logo', { opacity: 0, duration: 0.5, ease: "power2.out", }, "<0.2")
+			tl.from('#hero-button2', { opacity: 0, duration: 0.5, delay: 1, ease: "power2.out" }, "<-0.5")
+			tl.to('#left-swipe', { top: '0', duration: 0 })
+			tl.to('#right-swipe', { bottom: '0', duration: 0 })
+			tl.from(".scroll-msg", { opacity: 0, duration: 0.6 })
+			tl.from(".scroll-msg", { y: -75, duration: 2, repeat: -1, yoyo: true }, "<-0.5")
+
+
+			console.log("load page effects")
+			pageEffects();
+
+
+
+
+		}; /* END OF ON LOAD FUNCTION */
+
+		function particles() {
+
+
+
+			setTimeout(() => {
+
+				var rellax = new Rellax('.rellax');
+			}, 2000)
+
+
+			
+		
+		}
+
+		function pageEffects() {
+
+			var myWave = $('#hero-waves').wavify({
+				height: 80,
+				bones: 4,
+				amplitude: 60,
+				color: 'rgb(237, 28, 36, 1)',
+				speed: .15
+			});
+
+			var myWave2 = $('#hero-waves2').wavify({
+				height: 60,
+				bones: 3,
+				amplitude: 40,
+				color: 'rgb(167, 36, 41, 0.8)',
+				speed: .25
+			});
+
+			var myWave3 = $('#about-waves').wavify({
+				height: 80,
+				bones: 4,
+				amplitude: 60,
+				color: 'rgb(237, 28, 36, 1)',
+				speed: .15
+			});
+
+		}
+
+		function reinitTheme() {
+			$('script').each(function () {
+				if (this.src === '/assets/js/functions.js') {
+
+					this.parentNode.removeChild(this);
+				}
+			});
+
+			let script = document.createElement('script');
+			script.src = '/assets/js/functions.js';
+			document.body.appendChild(script);
+			particles();
+
+
+
+		}
+
+	}()); /* END OF WRAPPING FUNCTION */
+
+	Object.prototype.hasOwnProperty = function (property) {
+		return this[property] !== undefined;
+	};
+</script><!-- Google Map End -->
+
+<!-- <script>
+	
+		// Hover Script
+		jQuery(".img-hover-wrap").hover3d({
+			selector: ".img-hover-card",
+			shine: false,
+		});
+	
+	</script> -->

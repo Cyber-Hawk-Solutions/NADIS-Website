@@ -1,0 +1,61 @@
+---
+layout: single-page
+title: Contact
+subtitle: Get in touch with us
+---
+
+<div id="contact" class="background-grey m-0 contact-area">
+  <div class="contact-inner area-padding">
+    <div class="contact-overly"></div>
+    <div class="container  pt-5">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 my-5 mt-5">
+          <div class="section-headline text-center ">
+            <h2 class="text-light">Let's have a talk</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Start contact icon column -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="contact-icon text-center">
+            <div class="single-icon">
+              <i class="fa fa-mobile"></i>
+              <p>
+                Call: {{ site.phone }} 
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Start contact icon column -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="contact-icon text-center">
+            <div class="single-icon">
+              <i class="fa fa-envelope-o"></i>
+              <p>
+                Email: {{site.email}}<br>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Start contact icon column -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="contact-icon text-center">
+            <div class="single-icon">
+              <i class="fa fa-map-marker"></i>
+              <p>
+                Location: {{site.address}}<br>
+                <span>St.Johns, Antigua</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    {%include contact.html %}
+
+    </div>
+  </div>
+</div>
+
+{% include CTAbanner.html %}
