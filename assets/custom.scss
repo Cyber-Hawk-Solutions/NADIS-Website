@@ -438,7 +438,7 @@ z-index: 2;
 }
 
 body, #wrapper, .css3-spinner, #header.dark.sticky-header.transparent-header #header-wrap:not(.not-dark) {
-	background-color: #E5E5E5;
+	background-color: #ffffff;
 	/* background: transparent !important; */
 }
 
@@ -553,28 +553,20 @@ body, #wrapper, .css3-spinner, #header.dark.sticky-header.transparent-header #he
 	top: -75px;
 }
 
-@media (min-width: 992px) {
-	.feature-content {
-			top: -50px;
-			left: -50px;
-			width: 500px;
-			height: 500px;
+@media (min-width: 960px) {
+	.solution-details {
+		padding-left: 7rem;
+		overflow: hidden;
 	}
 
-	.circle-border {
-		height: 400px;
-		width: 400px;
+}
+
+@media (max-width: 960px) {
+	.solution-details {
+		padding: 0rem 2rem;
+		overflow: hidden;
 	}
 
-	.circle-inner {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-	}
-
-	.section-about {
-		height: 100vh;
-	}
 }
 
 
@@ -995,6 +987,8 @@ body, html {
 }
 
 .section-about {
+
+	min-height: 100vh;
 	.waves {
 		transform-origin: 50% 50%;
     transform: rotate(180deg);
@@ -1021,20 +1015,103 @@ body, html {
 	.split-line {
 		line-height: 3rem;
 	}
+
+	.word {
+		color: #444;
+		font-family: inherit !important;
+		font-size: 3rem !important;
+		font-weight: inherit;
+		padding-bottom: 4px;
+	}
 }
 
+.section-solutions {
+	height: 100vh;
+	.solutions-phone {
+    width: 100%;
+    height: auto;	}
+	.solutions-laptop {
+    height: auto;
+
+    position: relative;
+		max-height: 47vh;
+    right: 160px;
+	}
+	.word {
+		line-height: 122%;
+	}
+}
 .scrollmagic-pin-spacer {
 	z-index: 2;
 }
 
-.word {
-	color: #444;
-	font-family: inherit !important;
-	font-size: 3rem !important;
-	font-weight: inherit;
-	padding-bottom: 4px;
+.section-title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	color: #242325;
+	font-size: 4rem;
 }
+
+.solution-title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 110.4%;
+	letter-spacing: 0.085em;
+	color: #ED1C24;
+	overflow: hidden;
+
+}
+
+.solution-details {
+	overflow: hidden;
+}
+
+
+.solution-body {
+	font-family: Nunito;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 24px;
+	line-height: 0.9 !important;
+	color: #242325;
+	overflow: hidden;
+
+}
+
+.solution-picture {
+	position: absolute;
+	top: 0;
+	margin-top: 6%;
+	pointer-events: none;
+}
+
+.solution-cta {
+	font-size: 32px;
+	color: #000000;
+
+	img {
+		width: 42px;
+    transform: rotate(180deg);
+    margin-bottom: 8px;
+    margin-right: 28px;
+	}
+}
+
+
 
 section {
 	position: relative;
+}
+
+.section {
+	background-color: #ffffff;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-80 {
+  height: 80% !important;
 }

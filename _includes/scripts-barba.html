@@ -102,6 +102,16 @@
 
 		function loadBarb(data) {
 
+			function addMQListener(mq, callback) {
+				if (mq.addEventListener) {
+					mq.addEventListener("change", callback);
+				} else {
+					mq.addListener(callback);
+				}
+			}
+
+
+
 			try {
 				console.log("B PAGE 1", data['current']['namespace'])
 			}
@@ -147,7 +157,7 @@
 
 				lines.forEach((splitResult) => {
 					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<h2 class="t400 ls0 nott mb-3 font-primary text-center split-line" style="overflow:hidden">
+					<h2 class="t400 ls0 nott mb-0 font-primary text-center split-line" style="overflow:hidden">
 						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
 					</span>`).join('')}
 					</h2>`).join('');
@@ -164,7 +174,7 @@
 				let aboutTl = gsap.timeline()
 
 				.to('#about-waves', 3, {fill: '#CB0808'})
-				.fromTo('.word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-2")
+				.fromTo('.section-about .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-2")
 				.to('.emphasis-word', 1, {fontWeight:700, color: '#ED1C24', stagger: 0.1}, ">-1.25" )			
 				.from('.about-subtitle h3', 1, {y:150, overflow:'hidden'}, ">-1")
 
@@ -177,6 +187,71 @@
 
 				.setTween(aboutTl)
 				.setPin('.section-about')
+				.addIndicators()
+				.addTo(controller)
+
+				// ------ SOLUTIONS ------------
+
+				let solutionsTitle = document.querySelector('.section-solutions .solution-title');
+				let solutionLines = Splitting({ target: solutionsTitle, by: 'lines' });
+
+				solutionLines.forEach((splitResult) => {
+					const wrappedLines = splitResult.lines.map((wordsArr) => `
+					<h3 class="solution-title text-danger m-0">
+						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+					</span>`).join('')}
+					</h3>`).join('');
+					splitResult.el.innerHTML = wrappedLines;
+				})
+
+				let solutionsBody = document.querySelector('.section-solutions .solution-body');
+				let solutionLines2 = Splitting({ target: solutionsBody, by: 'lines' });
+
+				
+				solutionLines2.forEach((splitResult) => {
+					const wrappedLines = splitResult.lines.map((wordsArr) => `
+					<p class="solution-body m-0">
+						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+					</span>`).join('')}
+					</p>`).join('');
+					splitResult.el.innerHTML = wrappedLines;
+				})
+
+
+				let solutionsTl = gsap.timeline()
+
+			
+				if (window.matchMedia("(min-width: 960px)").matches) {
+					solutionsTl.fromTo('.solutions-phone', 3, {duration: 3, x: "20%", transformOrigin: "center", width:"80vw"}, { duration: 1, x: "40vw", width:"20vw"})
+					solutionsTl.to('.solutions-phone', 1, { duration: 1, x: "60vw"} )
+					solutionsTl.fromTo('.solutions-laptop', 1, {x: "50vw", opacity: 0}, { duration: 1, x: "60vw", opacity: 1},"<+0.5")
+				} else {
+					solutionsTl.fromTo('.solutions-phone', 3, {duration: 3, x: "10%", transformOrigin: "center", width:"80vw"}, { duration: 1, x: "100vw"})
+					solutionsTl.fromTo('.solutions-laptop', 1, { opacity: 0, position: "absolute", maxWidth: "none", width: "130vw"}, { duration: 1, opacity: 1},"<+0.5")
+					solutionsTl.fromTo('.solutions-laptop', 1, {x: "60vw", y: "-20vh"}, { duration: 1, x: "180vw"})
+
+				}
+			
+
+				solutionsTl.from('.section-solutions .section-title', 2, {y: "25px", opacity: 0},"<+0.5")
+				.fromTo('.section-solutions .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<+0.5")
+				.from('.solution-cta', 1, { duration: 1, x: "-30", opacity: 0} )
+
+				// .from('.solution-title', 1, {y:150, overflow:'hidden'}, ">-1")
+				// .from('.solution-body', 1, {y:150, overflow:'hidden'}, ">-1")
+
+
+
+
+
+				let solutionsScene = new ScrollMagic.Scene({
+					triggerElement:  '.section-solutions',
+					triggerHook: 0,
+					duration: "100%"
+				})
+
+				.setTween(solutionsTl)
+				.setPin('.section-solutions')
 				.addIndicators()
 				.addTo(controller)
 
