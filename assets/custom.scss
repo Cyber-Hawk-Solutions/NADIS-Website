@@ -961,9 +961,16 @@ body, html {
 		margin-bottom: 8rem;	
 	}
 
+	@media (max-width: 600px) {
+		#hero-title {
+					font-size: 53px;
+
+		}
+	}
+
 
 }
-
+ 
 .hero::before{
 	content: '';
 	position: absolute;
