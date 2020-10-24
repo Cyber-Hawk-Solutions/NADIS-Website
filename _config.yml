@@ -14,18 +14,18 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: NADIS
-email:     
+email: canice@nadis.app
 
 #>- # this means to ignore newlines until "baseurl:"
  
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-address: 12213123
-phone: +1268-23e32e32
-description: Making NADIS more predictable  
+address: Antigua and Barbuda Science And Innovation Park
+phone: +1268-7893698
+description: Making Nature More Predictable  
 phone-alt: 
 fax: 
-theme-color: "#444"
+theme-color: "#ED1C24"
 
 # Build settings
 markdown: kramdown

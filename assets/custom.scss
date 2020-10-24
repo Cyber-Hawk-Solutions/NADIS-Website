@@ -199,16 +199,6 @@
 
 .text-overlay-wrap:hover .explore-text-overlay { opacity: 1; }
 
-.section-contact h3 {
-	font-size: 1.4rem;
-	font-weight: 700;
-}
-
-.section-contact > div {
-	padding: 30px 20px;
-	border: 1px solid #EEE;
-}
-
 .social-icon.si-mini {
 	width: 28px;
 	height: 28px;
@@ -434,7 +424,11 @@ z-index: 2;
 
 .team-title {
   position: relative;
-  padding-top: 20px;
+	padding-top: 20px;
+}
+
+body {
+	color: #ffffff;
 }
 
 body, #wrapper, .css3-spinner, #header.dark.sticky-header.transparent-header #header-wrap:not(.not-dark) {
@@ -1032,8 +1026,35 @@ body, html {
 	}
 }
 
+.section-title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	color: #242325;
+	font-size: 4rem;
+}
+
+section {
+	position: relative;
+}
+
+.section {
+	background-color: #ffffff;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
 .section-solutions {
 	height: 100vh;
+
+	.waves {
+		height: 20%;
+	}
 	.solutions-phone {
     width: 100%;
     height: auto;	}
@@ -1052,12 +1073,6 @@ body, html {
 	z-index: 2;
 }
 
-.section-title {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: bold;
-	color: #242325;
-	font-size: 4rem;
-}
 
 .solution-title {
 	font-family: 'Open Sans', sans-serif;
@@ -1073,7 +1088,6 @@ body, html {
 .solution-details {
 	overflow: hidden;
 }
-
 
 .solution-body {
 	font-family: Nunito;
@@ -1096,6 +1110,7 @@ body, html {
 .solution-cta {
 	font-size: 32px;
 	color: #000000;
+	mix-blend-mode: multiply;
 
 	img {
 		width: 42px;
@@ -1105,20 +1120,73 @@ body, html {
 	}
 }
 
+//  -------------- STORIES ---------------------
 
-
-section {
-	position: relative;
+@media (max-width: 600px) {
+	.story-title {
+		font-size: 2.2rem !important;
+	}
 }
 
-.section {
-	background-color: #ffffff;
+.section-stories {
+		height: 100vh;
 }
 
-.h-20 {
-  height: 20% !important;
+
+.section-stories {
+	height: 100vh;
+
+	.waves {
+		height: 20%;
+	}
+	.story-picture {
+    width: 100%;
+		height: auto;
+		overflow: hidden;
+	}
+	.word {
+		line-height: 122%;
+	}
 }
 
-.h-80 {
-  height: 80% !important;
+.story-title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	font-size: 64px;
+	line-height: 110.4%;
+	letter-spacing: 0.085em;
+	color: #ffffff;
+	overflow: hidden;
+	text-transform: uppercase;
+
+}
+
+.story-details {
+	overflow: hidden;
+}
+
+.story-body {
+	font-family: Nunito;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 1.14 !important;
+	color: #ffffff;
+	overflow: hidden;
+
+}
+
+.scrolling-text {
+	position: absolute;
+	top: -7%;
+	left: 100vw;
+	z-index: 0;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 80vh;
+	line-height: 953px;
+	text-transform: uppercase;
+	color: transparent;
+	-webkit-text-stroke: rgba(255, 255, 255, 0.22) 4px;
 }

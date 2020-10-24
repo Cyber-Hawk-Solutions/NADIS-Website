@@ -26,51 +26,63 @@ event-pos: 90
 	{% include solutions.html %}
 
 
+	{% include stories.html %}
+	
 
-	<!-- <h2 class="h1 bottommargin text-light text-center "> Articles</h2>
-
-	<div class="row container-fluid">
-
-	{% for post in site.posts %}
-
-		<div class="col-12 col-sm-6 col-lg-5">
-			<div class="story py-5 story-list clearfix row">
-				<div class="story-image col-6 ">
-					<div class="img-container">
-						<img src="{{post.banner_image}}" alt="Nix Maxwell">
+	<section class="section-contact">
+		<div id="contact" class="m-0 contact-area">
+			<div class="contact-inner area-padding">
+				<div class="contact-overly"></div>
+				<div class="container  pt-5">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12 my-5 mt-5">
+							<div class="section-headline text-center ">
+								<h2 class="text-light">Let's have a talk</h2>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="d-flex align-self-center flex-column story-desc col-6 ">
-					<div class="story-title ">
-						<h4 class="text-light ">{{ post.title }}</h4>
-
-						<span class="text-light d-block ">by {{ post.author }}</span>
-						<span class="text-light ">{{ post.date | date_to_string: "ordinal", "US"}}</span>
-
+					<div class="row">
+						<!-- Start contact icon column -->
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="contact-icon text-center">
+								<div class="single-icon">
+									<i class="fa fa-mobile"></i>
+									<p>
+										Call: {{ site.phone }} 
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- Start contact icon column -->
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="contact-icon text-center">
+								<div class="single-icon">
+									<i class="fa fa-envelope-o"></i>
+									<p>
+										Email: {{site.email}}<br>
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- Start contact icon column -->
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="contact-icon text-center">
+								<div class="single-icon">
+									<i class="fa fa-map-marker"></i>
+									<p>
+										Location: {{site.address}}<br>
+										<span>Antigua, W.I</span>
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="story-content exerpt-line-clamp">
-						{{ post.excerpt }}
-
-
-						<a id="hero-button1" href="{{ post.url }}"
-							class="button button-border button-white button-light button-rounded capitalize notopmargin"><span>Read
-								more</span></a><br class="d-block d-sm-none">
-					</div>
-
+				
+		
 				</div>
 			</div>
-		</div>
-	{% endfor %}
-
-		<div class=" col-12 col-lg-2 text-center align-self-center mt-5">
-			<a href="articles" class="400 h4 text-light justify-content-end text-right" >Read More 
-				<img src="assets/images/gg_arrow-long-up.svg" style="
-				transform: rotateZ(180deg); max-width: 50px;" class="mb-2 pl-3">
-			</a>
-			
-		</div>
-	</div>
- -->
+		</div>		
+	</section>
 
 
 

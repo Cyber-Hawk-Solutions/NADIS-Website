@@ -47,6 +47,15 @@
 
 		var controller = new ScrollMagic.Controller();
 		var tl = gsap.timeline();
+		var heroWave ;
+
+		var heroWave2;
+
+		var aboutWave;
+
+		var solutionWave;
+
+		var solutionWave2;
 
 
 		barba.init({
@@ -148,6 +157,14 @@
 				.setPin('.hero')
 				.addIndicators()
 				.addTo(controller)
+				.on("enter", ()=>{
+					heroWave.play();
+					heroWave2.play();
+				})
+				.on("leave", ()=>{
+					heroWave.pause();
+					heroWave2.pause();
+				})
 				
 				// ---- ABOUT SECTION --------------
 
@@ -189,6 +206,13 @@
 				.setPin('.section-about')
 				.addIndicators()
 				.addTo(controller)
+				.on("enter", ()=>{
+					aboutWave.play();
+					heroWave2.play();
+				})
+				.on("leave", ()=>{
+					aboutWave.pause();
+				})
 
 				// ------ SOLUTIONS ------------
 
@@ -222,12 +246,12 @@
 
 			
 				if (window.matchMedia("(min-width: 960px)").matches) {
-					solutionsTl.fromTo('.solutions-phone', 3, {duration: 3, x: "20%", transformOrigin: "center", width:"80vw"}, { duration: 1, x: "40vw", width:"20vw"})
-					solutionsTl.to('.solutions-phone', 1, { duration: 1, x: "60vw"} )
+					solutionsTl.fromTo('.solutions-phone', 4, { x: "20%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "40vw", width:"20vw"})
+					solutionsTl.to('.solutions-phone', 3, { duration: 3, x: "60vw"} )
 					solutionsTl.fromTo('.solutions-laptop', 1, {x: "50vw", opacity: 0}, { duration: 1, x: "60vw", opacity: 1},"<+0.5")
 				} else {
-					solutionsTl.fromTo('.solutions-phone', 3, {duration: 3, x: "10%", transformOrigin: "center", width:"80vw"}, { duration: 1, x: "100vw"})
-					solutionsTl.fromTo('.solutions-laptop', 1, { opacity: 0, position: "absolute", maxWidth: "none", width: "130vw"}, { duration: 1, opacity: 1},"<+0.5")
+					solutionsTl.fromTo('.solutions-phone', 4, { x: "10%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "100vw"})
+					solutionsTl.fromTo('.solutions-laptop', 3, { opacity: 0, position: "absolute", maxWidth: "none", width: "130vw"}, { duration: 3, opacity: 1},"<+0.5")
 					solutionsTl.fromTo('.solutions-laptop', 1, {x: "60vw", y: "-20vh"}, { duration: 1, x: "180vw"})
 
 				}
@@ -236,6 +260,16 @@
 				solutionsTl.from('.section-solutions .section-title', 2, {y: "25px", opacity: 0},"<+0.5")
 				.fromTo('.section-solutions .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<+0.5")
 				.from('.solution-cta', 1, { duration: 1, x: "-30", opacity: 0} )
+				.to('.section-solutions .waves', 3, {zIndex:5, duration: 2})
+				.to('.section-solutions .waves', 3, {height: '105%', duration: 5})
+				.to('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', 1, { y:100 },"<+1")
+				.set('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', {autoAlpha: 0 })
+
+				.fromTo('.section-solutions .waves', 3, {position: 'absolute'}, {position: 'fixed'})
+
+
+
+				// 
 
 				// .from('.solution-title', 1, {y:150, overflow:'hidden'}, ">-1")
 				// .from('.solution-body', 1, {y:150, overflow:'hidden'}, ">-1")
@@ -247,13 +281,131 @@
 				let solutionsScene = new ScrollMagic.Scene({
 					triggerElement:  '.section-solutions',
 					triggerHook: 0,
-					duration: "100%"
+					duration: "380%"
 				})
 
 				.setTween(solutionsTl)
-				.setPin('.section-solutions')
+				.setPin('.section-solutions', {pushFollowers: false})
 				.addIndicators()
 				.addTo(controller)
+				.on("enter", ()=>{
+					solutionWave.play();
+					solutionWave2.play();
+				})
+				.on("leave", ()=>{
+					
+				})
+
+				// --------------------- SPACER -----------------------
+
+				let solutionsSPACERScene = new ScrollMagic.Scene({
+					triggerElement:  '.solutions-space-holder',
+					triggerHook: 0,
+					duration: "100%"
+				})
+				.setPin('.solutions-space-holder')
+				.addIndicators()
+				.addTo(controller)
+				.on("enter", ()=>{
+					solutionWave.play();
+
+				})
+				.on("leave", ()=>{
+					// gsap.fromTo('.section-solutions .waves', 3, {position: 'fixed'}, {position: 'absolute'})
+
+				})
+
+
+				// ----------------- STORIES --------------------------
+
+				let storiesTitle = document.querySelector('.section-stories .story-title');
+				let storiesLines = Splitting({ target: storiesTitle, by: 'lines' });
+
+				storiesLines.forEach((splitResult) => {
+					const wrappedLines = splitResult.lines.map((wordsArr) => `
+					<h3 class="story-title m-0">
+						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+					</span>`).join('')}
+					</h3>`).join('');
+					splitResult.el.innerHTML = wrappedLines;
+				})
+
+				let storiesBody = document.querySelector('.section-stories .story-body');
+				let storiesLines2 = Splitting({ target: storiesBody, by: 'lines' });
+
+				
+				storiesLines2.forEach((splitResult) => {
+					const wrappedLines = splitResult.lines.map((wordsArr) => `
+					<p class="story-body m-0">
+						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+					</span>`).join('')}
+					</p>`).join('');
+					splitResult.el.innerHTML = wrappedLines;
+				})
+
+
+				let storiesTl = gsap.timeline()
+
+				storiesTl.from('.section-stories .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
+
+				.to('.section-stories  .scrolling-text', 6, {x: "-100%", duration: 6}, "<")
+				.fromTo('.section-stories .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<0.5")
+				.fromTo('.story-picture img', 1, {y:'100%', overflow:'hidden'}, { duration: 2, y:0}, "<0.25")
+
+				.to('.section-stories  .scrolling-text', 6, {x: "-200%", duration: 1} )
+				.to('.section-stories .section-title', 2, {y: "-25px", opacity: 0},"<0.75")
+				.to('.section-stories .word', 1, {y:-100, overflow:'hidden', transformOrigin: "center top", duration: 1.5,}, "<0.5")
+				.to('.story-picture img', 1, {y:'-100%', transformOrigin: "center top", overflow:'hidden', duration: 1.5}, "<0.25")
+
+
+				let storiesScene = new ScrollMagic.Scene({
+					triggerElement:  '.section-stories',
+					triggerHook: 0,
+					duration: "100%"
+				})
+
+				.setTween(storiesTl)
+				.setPin('.section-stories')
+				.addIndicators()
+				.addTo(controller)
+				.on("enter", ()=>{
+
+				})
+				.on("leave", ()=>{
+	
+					// solutionWave.pause();
+					// solutionWave2.pause();
+				})
+
+
+
+				// ---------- CONTACT ----------------
+
+
+
+				let contactTl = gsap.timeline()
+
+				contactTl.from('.section-contact .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
+
+				.fromTo('.section-contact .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-0.5")
+
+
+				let contactScene = new ScrollMagic.Scene({
+					triggerElement:  '.section-contact',
+					triggerHook: 0,
+					duration: "30%"
+				})
+
+				.setTween(contactTl)
+				.setPin('.section-contact')
+				.addIndicators()
+				.addTo(controller)
+				.on("enter", ()=>{
+
+				})
+				.on("leave", ()=>{
+
+				})
 
 
 				
@@ -316,7 +468,7 @@
 
 		function pageEffects() {
 
-			var myWave = $('#hero-waves').wavify({
+			 heroWave = $('#hero-waves').wavify({
 				height: 80,
 				bones: 4,
 				amplitude: 60,
@@ -324,7 +476,7 @@
 				speed: .15
 			});
 
-			var myWave2 = $('#hero-waves2').wavify({
+			 heroWave2 = $('#hero-waves2').wavify({
 				height: 60,
 				bones: 3,
 				amplitude: 40,
@@ -332,12 +484,28 @@
 				speed: .25
 			});
 
-			var myWave3 = $('#about-waves').wavify({
+			 aboutWave = $('#about-waves').wavify({
 				height: 80,
 				bones: 4,
 				amplitude: 60,
 				color: 'rgb(237, 28, 36, 1)',
 				speed: .15
+			});
+
+			 solutionWave = $('#solution-waves').wavify({
+				height: 80,
+				bones: 4,
+				amplitude: 60,
+				color: 'rgb(209 23 23)',
+				speed: .15
+			});
+
+			 solutionWave2 = $('#solution-waves2').wavify({
+				height: 60,
+				bones: 3,
+				amplitude: 40,
+				color: 'rgb(237 28 36)',
+				speed: .25
 			});
 
 		}
