@@ -155,7 +155,7 @@
 				})
 				.setTween(hometl)
 				.setPin('.hero')
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 					heroWave.play();
@@ -204,7 +204,7 @@
 
 				.setTween(aboutTl)
 				.setPin('.section-about')
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 					aboutWave.play();
@@ -286,7 +286,7 @@
 
 				.setTween(solutionsTl)
 				.setPin('.section-solutions', {pushFollowers: false})
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 					solutionWave.play();
@@ -304,7 +304,7 @@
 					duration: "100%"
 				})
 				.setPin('.solutions-space-holder')
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 					solutionWave.play();
@@ -361,12 +361,12 @@
 				let storiesScene = new ScrollMagic.Scene({
 					triggerElement:  '.section-stories',
 					triggerHook: 0,
-					duration: "100%"
+					duration: "200%"
 				})
 
 				.setTween(storiesTl)
 				.setPin('.section-stories')
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 
@@ -398,7 +398,7 @@
 
 				.setTween(contactTl)
 				.setPin('.section-contact')
-				.addIndicators()
+				//.addIndicators()
 				.addTo(controller)
 				.on("enter", ()=>{
 
