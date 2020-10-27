@@ -16,7 +16,7 @@
     width: 100%;
     height: 100%;
     z-index: 1004;
-    background: #1d2229;
+    background: #fff;
     overflow: hidden
   }
 
@@ -133,55 +133,33 @@
 
 
 <style>
-  #reveal {
-    display: flex;
-    flex-direction: column;
-    background-color: #1d2229;
-    position: fixed;
-    z-index: 1003;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-  }
+  
+  #reveal #grid {
+	 position: fixed;
+	 z-index: 4000;
+	 width: 100vw;
+	 height: 100vh;
+	 display: grid;
+	 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	 grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+   justify-content: center;
+   pointer-events: none;
+}
+ #reveal #grid .grid-item {
+	 min-width: 100%;
+	 min-height: 100%;
+	 background-color: #fff;
+	 cursor: pointer;
+	 position: relative;
+	 outline: 1px black solid;
+}
+ #reveal #grid .grid-item:hover {
+	 opacity: 0.8;
+}
+ 
 
-  #reveal-swipe1, #reveal-swipe2 {
-    display: flex;
-    flex: 100%;
-    justify-content: center;
-    align-items: center;
-    text-overflow:clip;
-    overflow: hidden;
-    pointer-events: none;
-  }
 
-  #reveal-swipe1 h1, #reveal-swipe2 h1 {
-    font-size: 25em;
-    color: #e10000;
-  }
 
-  @media (max-width: 767.98px){
-    #reveal-swipe1 h1, #reveal-swipe2 h1 {
-      font-size: 34vw;
-    }
-  }
-
-  #left-swipe, #right-swipe {
-    position: absolute;
-    height: 50vh;
-    width: 100vw;    
-    background-color: #1d2229;
-    pointer-events: none;
-  }
-
-  #left-swipe {
-    top: 0;
-    left: 0;
-  }
-
-  #right-swipe {
-    bottom: 0;
-    right: 0;
-  }
 
 </style>
 
@@ -192,15 +170,128 @@
 
 
 <section id="reveal">
-  <div id="reveal-swipe1">
-    <h1>Nolan</h1>
-  </div>
-  <div id="reveal-swipe2">
-    <h1>Hue</h1>
-  </div>
-  <div id="left-swipe"></div>
-  <div id="right-swipe"></div>
 
 
 
 </section>
+
+<script src="{{'assets/js/anime.min.js'  | relative_url }}"></script>
+<script src="{{'https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.4/randomColor.min.js'  | relative_url }}"></script>
+
+
+<script>
+
+  var  total, columns, rows ;
+  var animeTl =  anime.timeline({
+    loop: false,
+    duration: 500,
+    easing: 'easeInOutSine',
+  })
+
+  document.addEventListener("DOMContentLoaded", (event)=> { 
+
+    loader(()=>{
+
+      let hero = gsap.timeline
+      animeTl 
+
+      
+      .add({
+        targets: ".grid-item",
+        backgroundColor: "#ED1C24",
+        outline: "1px black solid",
+        delay: anime.stagger(40, { grid: [columns, rows]  })
+      })	
+
+      .add({
+        targets: ".grid-item",
+        backgroundColor: "rgba(255, 255, 255, .0)",
+        outline: "1px rgba(255, 255, 255, .0) solid",
+        delay: anime.stagger(40, { grid: [columns, rows]  }),
+      },
+      "-=200"
+      )
+      .add({
+        targets: '.hero-logo',
+        translateY: ['100%','0%']},
+        "-=3000"
+      )
+      .add({
+        targets: '#hero-title',
+        translateY: ['50%','0%'],
+        opacity: [0, 1],
+        duration: 600},
+        "-=2800"
+      )
+      .add({
+        targets: '.hero .waves',
+        translateY: ['100%','0%'],
+        duration: 1000},
+        "-=2900"
+      )
+
+
+    })
+
+  });
+    
+  function loader( callback){
+
+    let grid = '';
+    let mapGrid = (x, i) => {
+      
+    grid += `
+      <div
+        class="grid-item"
+        id="${i}"
+      />
+      `;
+    }
+
+    let handleStagger = (i) => {
+      const el = i.target.id;
+      anime({
+        targets: ".grid-item",
+        backgroundColor: randomColor(),
+        delay: anime.stagger(50, { grid: [columns, rows], from: el })
+      });		
+    };
+
+    let getGridSize = () => {
+      const columns = Math.floor(document.body.clientWidth / 100);
+      const rows = Math.floor(document.body.clientHeight / 100);
+
+      anime({
+        targets: ".grid-item",
+        backgroundColor: "#fff",
+        duration: 0,
+        easing: "linear"
+      });
+
+      return { columns, rows, total: rows * columns };
+    };
+
+    let gridSize = getGridSize();
+    total = gridSize.total;
+    columns = gridSize.columns;
+    rows = gridSize.rows;
+
+    window.addEventListener("resize", getGridSize);
+
+    let gridArr = new Array(total).fill(0).map(mapGrid)
+
+    // console.log([columns, rows], grid, total);
+
+    $('#reveal').html(
+    `<div id="grid">
+      ${grid}
+    </div>`
+    )
+
+    $('.grid-item').on('click', handleStagger)
+
+    setTimeout(callback, 1000)
+
+  }
+
+</script>
