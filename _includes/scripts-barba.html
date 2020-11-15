@@ -100,6 +100,7 @@
 
 		barba.hooks.enter((data) => {
 			tl = gsap.timeline();
+
 			controller = new ScrollMagic.Controller();
 
 
@@ -114,6 +115,10 @@
 		particles();
 
 		function loadBarb(data) {
+
+			gsap.defaults({
+				ease: "power2.inOut"
+			});
 
 			function addMQListener(mq, callback) {
 				if (mq.addEventListener) {
