@@ -2,40 +2,52 @@
 
 <!-- Slider
 		============================================= -->
-<section class="hero clearfix">
+<section class="hero section-horizontal">
 
-	<div class="container h-100">
+	<p class="hero-bg-scroller">ProdiGii Concepts</p>
 
+	
+	<div class="particles-scroller">
+		<div class="big-particles-1">
+			<div class="small-bottom"></div>
+			<div class="base"></div>
+			<div class="small-top"></div>
+		</div>
 
+		<div class="big-particles-1 particles-position-2">
+			<div class="small-bottom"></div>
+			<div class="base"></div>
+			<div class="small-top"></div>
+		</div>
+	</div>
 
-		<div class="row h-100 d-flex align-items-center flex-row">
+	<div class="h-100 d-flex flex-row ">
 
-			<div class="col-lg-8 h-100 d-flex align-self-center flex-column justify-content-center ">
-				<div class="hero-img-container">
-						<img class="hero-logo" style="width: 60%;" src="{{ 'assets/images/logo.png' | relative_url}}" />
+		<div class="row d-flex align-content-center flex-row">
+			<div class="hero-img-container w-100 d-flex justify-content-center my-0">
+					<img class="hero-logo" style="width: 33%;" src="{{ 'assets/images/logos/PRODIGII LOGO_PRODIGII C WHITE.png' | relative_url}}" />
+			</div>
+
+			<div class="hero-feature-carousel row d-flex align-items-center flex-row flex-nowrap ml-5 my-5">
+				<div class="col col-4">
+					<h1 class="hero-title text-center" >
+						Uniquely Crafted Antiguan Designs
+					</h1>
 				</div>
 
-				<h1 id="hero-title" class="400">{{ hero.heading }}</h1>
+				{% for item in hero.featuredNav %}
+
+				<div class="col col-3 mx-2 hero-img-framed d-flex justify-content-center align-items-end">
+					<img class="img-fluid" src="{{ item.img }}" alt="">
+					<button type="button" class="btn btn-primary hero-button">{{ item.label }}</button>
+				</div>
+
+				{% endfor %}
+
 			</div>
 		</div>
 
 
-
-		<a id="hero-button1" href="{{ hero.buttons[0].link }}"
-			class="button button-large button-border button-white button-light button-rounded capitalize notopmargin"><span>{{ hero.buttons[0].text }}</span></a><br
-			class="d-block d-sm-none">
-		<a id="hero-button2" href="{{ hero.buttons[1].link }}"
-			class="hero-action-link d-inline-block ml-2 mt-2 ml-sm-3 mt-sm-0" data-lightbox="iframe"><i
-				class="icon-play-sign"></i> {{ hero.buttons[1].text }}</a>
-
-		<svg class="waves" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="hero-waves2" d=""/></svg>
-		<svg class="waves" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs></defs><path id="hero-waves" d=""/></svg>
-
-		<!-- <img class="waves" src="assets/images/waves.svg"> -->
-
 	</div>
-
-
-
 
 </section>

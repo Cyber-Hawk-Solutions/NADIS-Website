@@ -132,36 +132,6 @@
 </style>
 
 
-<style>
-  
-  #reveal #grid {
-	 position: fixed;
-	 z-index: 4000;
-	 width: 100vw;
-	 height: 100vh;
-	 display: grid;
-	 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-	 grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-   justify-content: center;
-   pointer-events: none;
-}
- #reveal #grid .grid-item {
-	 min-width: 100%;
-	 min-height: 100%;
-	 background-color: #fff;
-	 cursor: pointer;
-	 position: relative;
-	 outline: 1px black solid;
-}
- #reveal #grid .grid-item:hover {
-	 opacity: 0.8;
-}
- 
-
-
-
-
-</style>
 
 <div id="global-spinner" class="spinner">
   <div class="blob blob-0"></div>
@@ -195,100 +165,13 @@
       let hero = gsap.timeline
       animeTl 
 
-      
-      .add({
-        targets: ".grid-item",
-        backgroundColor: "#ED1C24",
-        outline: "1px black solid",
-        delay: anime.stagger(40, { grid: [columns, rows]  })
-      })	
-
-      .add({
-        targets: ".grid-item",
-        backgroundColor: "rgba(255, 255, 255, .0)",
-        outline: "1px rgba(255, 255, 255, .0) solid",
-        delay: anime.stagger(40, { grid: [columns, rows]  }),
-      },
-      "-=200"
-      )
-      .add({
-        targets: '.hero-logo',
-        translateY: ['100%','0%']},
-        "-=3000"
-      )
-      .add({
-        targets: '#hero-title',
-        translateY: ['50%','0%'],
-        opacity: [0, 1],
-        duration: 600},
-        "-=2800"
-      )
-      .add({
-        targets: '.hero .waves',
-        translateY: ['100%','0%'],
-        duration: 1000},
-        "-=2900"
-      )
-
-
     })
 
   });
     
   function loader( callback){
 
-    let grid = '';
-    let mapGrid = (x, i) => {
-      
-    grid += `
-      <div
-        class="grid-item"
-        id="${i}"
-      />
-      `;
-    }
 
-    let handleStagger = (i) => {
-      const el = i.target.id;
-      anime({
-        targets: ".grid-item",
-        backgroundColor: randomColor(),
-        delay: anime.stagger(50, { grid: [columns, rows], from: el })
-      });		
-    };
-
-    let getGridSize = () => {
-      const columns = Math.floor(document.body.clientWidth / 100);
-      const rows = Math.floor(document.body.clientHeight / 100);
-
-      anime({
-        targets: ".grid-item",
-        backgroundColor: "#fff",
-        duration: 0,
-        easing: "linear"
-      });
-
-      return { columns, rows, total: rows * columns };
-    };
-
-    let gridSize = getGridSize();
-    total = gridSize.total;
-    columns = gridSize.columns;
-    rows = gridSize.rows;
-
-    window.addEventListener("resize", getGridSize);
-
-    let gridArr = new Array(total).fill(0).map(mapGrid)
-
-    // console.log([columns, rows], grid, total);
-
-    $('#reveal').html(
-    `<div id="grid">
-      ${grid}
-    </div>`
-    )
-
-    $('.grid-item').on('click', handleStagger)
 
     setTimeout(callback, 1000)
 

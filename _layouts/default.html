@@ -10,13 +10,15 @@
 
     {%- comment -%} {% include browser-upgrade.html %} {%- endcomment -%}
     
-    {% include loader.html %}
+    {%- comment -%} {% include loader.html %} {%- endcomment -%} 
 
     <div data-barba="container" data-barba-namespace="{{page.slug}}">
 
-      {% include masthead.html %}
 
-      <div id="content" class="initial-content" >
+      <div id="content" class="initial-content horizontal-row" >
+
+        {% include masthead.html %}
+
         {{ content }}
       </div>      
 
@@ -26,7 +28,7 @@
 
  
     {% include scripts.html %}
-    {% include scripts-barba.html %}
+     {% include scripts-barba.html %}
 
 
   </body>

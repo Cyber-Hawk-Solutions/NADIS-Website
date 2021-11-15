@@ -2,9 +2,13 @@
 _title: Home
 heading: Making Nature More Predictable
 image: assets/uploads/nh-branding.jpg
-buttons:
-  - text: Who are We?
-    link: "/about"
-  - text: Hightlight reel
-    link: https://www.youtube.com/watch?v=XXwHNzQB2d8
+featuredNav:
+  - img: 'assets/images/portfolio/graphics.jpg'
+    label: 'Graphics'
+  - img: 'assets/images/portfolio/shirts.jpg'
+    label: 'Fashion'
+  - img: 'assets/images/portfolio/art.jpg'
+    label: 'Art'
+  - img: 'assets/images/portfolio/masks.jpg'
+    label: 'Shop'
 ---

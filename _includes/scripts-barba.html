@@ -17,11 +17,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"
 	integrity="sha256-XJuslujM3cGzRZGiSi/KNSdk58uORO/mmrEQNjVtb5k=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/build/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hover-effect@1.1.0/dist/hover-effect.umd.js"></script>
-<script src="{{'assets/plugins/scrollmagic/ScrollMagic.min.js'  | relative_url }}"></script>
-<script src="{{'assets/plugins/scrollmagic/debug.addIndicators.min.js'  | relative_url }}"></script>
-<script src="{{'assets/plugins/scrollmagic/animation.gsap.min.js'  | relative_url }}"></script>
+<!-- <script src="{{'assets/plugins/scrollmagic/ScrollMagic.min.js'  | relative_url }}"></script> -->
+<!-- <script src="{{'assets/plugins/scrollmagic/debug.addIndicators.min.js'  | relative_url }}"></script>
+<script src="{{'assets/plugins/scrollmagic/animation.gsap.min.js'  | relative_url }}"></script> -->
 
 <script src="https://unpkg.com/@barba/core"></script>
 
@@ -49,8 +50,10 @@
 		// 	return barbaTl2;
 		// }
 
-		var controller = new ScrollMagic.Controller();
+		// var controller = new ScrollMagic.Controller();
 		var tl = gsap.timeline();
+		gsap.registerPlugin(ScrollTrigger);
+
 		var heroWave ;
 
 		var heroWave2;
@@ -70,7 +73,7 @@
 					// create your stunning leave animation here
 
 
-					controller.destroy(true)
+					// controller.destroy(true)
 					// tl.to('.text-emphasis', {autoAlpha: 1, duration: 0,  onComplete: function () {
 					gsap.killTweensOf()
 					tl.kill()
@@ -101,7 +104,7 @@
 		barba.hooks.enter((data) => {
 			tl = gsap.timeline();
 
-			controller = new ScrollMagic.Controller();
+			// controller = new ScrollMagic.Controller();
 
 
 			loadBarb(data);
@@ -152,130 +155,185 @@
 
 
 
-				let hometl = gsap.timeline()
+				let hometl = gsap.timeline({
+					scrollTrigger: {
+						trigger: ".horizontal-row",
+						pin: true,
+						scrub: 1,
+						// base vertical scrolling on how wide the container is so it feels more natural.
+						end: "+=300%",
+						markers: true,
+					}
+				})
 
-				.to('.hero .waves', 3, {height: '120%'})
-				.to('#hero-waves, #hero-waves2', 3, {transformOrigin:"center top" })
+				.to('.hero-feature-carousel', {
+					xPercent: "-100", duration: 5
+				})
+				.to('.hero-bg-scroller', {
+					xPercent: "-80", duration: 5
+				}, "<")
+				.to('.particles-scroller .small-top, .particles-scroller .small-bottom', {
+					scale: 1, duration: 5, opacity: 0
+				}, "<")
 
-				let heroScene = new ScrollMagic.Scene({
-					triggerElement:  '.hero',
-					triggerHook: 0,
-					duration: "100%",
-					pushFollowers: true
-				})
-				.setTween(hometl)
-				.setPin('.hero')
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
-					heroWave.play();
-					heroWave2.play();
-				})
-				.on("leave", ()=>{
-					heroWave.pause();
-					heroWave2.pause();
-				})
+				.to('.img-cut-1', { x: "-110vw", duration: 3}, ">-2.2")
+				.to('.img-cut-1', { width:0, minWidth: 0, duration: 2.5}, "<+1")
+
+				.to('.about-section', { x: "-100%", duration: 2.75, ease:Linear.easeNone}, "<-1.25")
+
+				.to('.about-section', { x: "-200%", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to('.showcase-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
+
+				.to('.showcase-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to('.portfolio-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0")
+				
+				.to('.portfolio-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to('.contact-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
+
+
+
+				// let sections = gsap.utils.toArray(".section-horizontal");
+				// console.log(sections)
+				// hometl.to(sections, {
+				// 	xPercent: -100 * (sections.length - 1),
+				// 	ease: "none",
+				// 	scrollTrigger: {
+				// 		trigger: ".horizontal-row",
+				// 		pin: true,
+				// 		// pinSpacing: true,
+				// 		scrub: 1,
+				// 		// base vertical scrolling on how wide the container is so it feels more natural.
+				// 		end: "+=3500",
+				// 		markers: true,
+				// 	}
+				// });
+
+				// hometl.to('.img-cut', {
+				// 	xPercent: "-100",
+				// 	scrollTrigger: {
+				// 		trigger: ".horizonal-row",
+				// 		pin: true,
+				// 		scrub: 1,
+				// 		// base vertical scrolling on how wide the container is so it feels more natural.
+				// 		end: "+=100%"
+				// 	}
+				// });
+
+
+				// let sections = gsap.utils.toArray(".section-horizontal");
+
+				// gsap.to(sections, {
+				// 	xPercent: -100 * (sections.length - 1),
+				// 	ease: "none",
+				// 	scrollTrigger: {
+				// 		trigger: ".container",
+				// 		pin: true,
+				// 		scrub: 1,
+				// 		// base vertical scrolling on how wide the container is so it feels more natural.
+				// 		end: "+=3500"
+				// 	}
+				// });
 				
 				// ---- ABOUT SECTION --------------
 
 
-				let title = document.querySelector('.about-title');
-				let lines = Splitting({ target: title, by: 'lines' });
+				// let title = document.querySelector('.about-title');
+				// let lines = Splitting({ target: title, by: 'lines' });
 
-				lines.forEach((splitResult) => {
-					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<h2 class="t400 ls0 nott mb-0 font-primary text-center split-line" style="overflow:hidden">
-						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
-					</span>`).join('')}
-					</h2>`).join('');
-					splitResult.el.innerHTML = wrappedLines;
-				})
+				// lines.forEach((splitResult) => {
+				// 	const wrappedLines = splitResult.lines.map((wordsArr) => `
+				// 	<h2 class="t400 ls0 nott mb-0 font-primary text-center split-line" style="overflow:hidden">
+				// 		${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+				// 	</span>`).join('')}
+				// 	</h2>`).join('');
+				// 	splitResult.el.innerHTML = wrappedLines;
+				// })
 				
-				let emphasisWords = ['proactive', 'solutions', 'Natural', 'Disturbances', 'Caribbean']
+				// let emphasisWords = ['proactive', 'solutions', 'Natural', 'Disturbances', 'Caribbean']
 
-				emphasisWords.forEach(function(word) {
-					$(`.about-title span:contains(${word})`).addClass('emphasis-word')
-				})
-
-
-				let aboutTl = gsap.timeline()
-
-				.to('#about-waves', 3, {fill: '#FF5F65'})
-				.fromTo('.section-about .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-2")
-				.to('.emphasis-word', 1, {fontWeight:700, color: '#ED1C24', stagger: 0.1}, ">-1.25" )			
-				.from('.about-subtitle h3', 1, {y:150, overflow:'hidden'}, ">-1")
+				// emphasisWords.forEach(function(word) {
+				// 	$(`.about-title span:contains(${word})`).addClass('emphasis-word')
+				// })
 
 
-				let aboutScene = new ScrollMagic.Scene({
-					triggerElement:  '.section-about',
-					triggerHook: 0,
-					duration: "150%"
-				})
+				// let aboutTl = gsap.timeline()
 
-				.setTween(aboutTl)
-				.setPin('.section-about')
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
-					aboutWave.play();
-					heroWave2.play();
-				})
-				.on("leave", ()=>{
-					aboutWave.pause();
-				})
+				// .to('#about-waves', 3, {fill: '#FF5F65'})
+				// .fromTo('.section-about .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-2")
+				// .to('.emphasis-word', 1, {fontWeight:700, color: '#ED1C24', stagger: 0.1}, ">-1.25" )			
+				// .from('.about-subtitle h3', 1, {y:150, overflow:'hidden'}, ">-1")
 
-				// ------ SOLUTIONS ------------
 
-				let solutionsTitle = document.querySelector('.section-solutions .solution-title');
-				let solutionLines = Splitting({ target: solutionsTitle, by: 'lines' });
+				// let aboutScene = new ScrollMagic.Scene({
+				// 	triggerElement:  '.section-about',
+				// 	triggerHook: 0,
+				// 	duration: "150%"
+				// })
 
-				solutionLines.forEach((splitResult) => {
-					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<h3 class="solution-title text-danger m-0">
-						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
-					</span>`).join('')}
-					</h3>`).join('');
-					splitResult.el.innerHTML = wrappedLines;
-				})
+				// .setTween(aboutTl)
+				// .setPin('.section-about')
+				// //.addIndicators()
+				// .addTo(controller)
+				// .on("enter", ()=>{
+				// 	aboutWave.play();
+				// 	heroWave2.play();
+				// })
+				// .on("leave", ()=>{
+				// 	aboutWave.pause();
+				// })
 
-				let solutionsBody = document.querySelector('.section-solutions .solution-body');
-				let solutionLines2 = Splitting({ target: solutionsBody, by: 'lines' });
+				// // ------ SOLUTIONS ------------
+
+				// let solutionsTitle = document.querySelector('.section-solutions .solution-title');
+				// let solutionLines = Splitting({ target: solutionsTitle, by: 'lines' });
+
+				// solutionLines.forEach((splitResult) => {
+				// 	const wrappedLines = splitResult.lines.map((wordsArr) => `
+				// 	<h3 class="solution-title text-danger m-0">
+				// 		${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+				// 	</span>`).join('')}
+				// 	</h3>`).join('');
+				// 	splitResult.el.innerHTML = wrappedLines;
+				// })
+
+				// let solutionsBody = document.querySelector('.section-solutions .solution-body');
+				// let solutionLines2 = Splitting({ target: solutionsBody, by: 'lines' });
 
 				
-				solutionLines2.forEach((splitResult) => {
-					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<p class="solution-body m-0">
-						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
-					</span>`).join('')}
-					</p>`).join('');
-					splitResult.el.innerHTML = wrappedLines;
-				})
+				// solutionLines2.forEach((splitResult) => {
+				// 	const wrappedLines = splitResult.lines.map((wordsArr) => `
+				// 	<p class="solution-body m-0">
+				// 		${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+				// 	</span>`).join('')}
+				// 	</p>`).join('');
+				// 	splitResult.el.innerHTML = wrappedLines;
+				// })
 
 
-				let solutionsTl = gsap.timeline()
+				// let solutionsTl = gsap.timeline()
 
 			
-				if (window.matchMedia("(min-width: 960px)").matches) {
-					solutionsTl.fromTo('.solutions-phone', 4, { x: "20%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "40vw", width:"20vw"})
-					solutionsTl.to('.solutions-phone', 3, { duration: 3, x: "60vw"} )
-					solutionsTl.fromTo('.solutions-laptop', 1, {x: "50vw", opacity: 0}, { duration: 1, x: "60vw", opacity: 1},"<+0.5")
-				} else {
-					solutionsTl.fromTo('.solutions-phone', 4, { x: "10%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "100vw"})
-					solutionsTl.fromTo('.solutions-laptop', 3, { opacity: 0, position: "absolute", maxWidth: "none", width: "130vw"}, { duration: 3, opacity: 1},"<+0.5")
-					solutionsTl.fromTo('.solutions-laptop', 1, {x: "60vw", y: "-20vh"}, { duration: 1, x: "180vw"})
+				// if (window.matchMedia("(min-width: 960px)").matches) {
+				// 	solutionsTl.fromTo('.solutions-phone', 4, { x: "20%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "40vw", width:"20vw"})
+				// 	solutionsTl.to('.solutions-phone', 3, { duration: 3, x: "60vw"} )
+				// 	solutionsTl.fromTo('.solutions-laptop', 1, {x: "50vw", opacity: 0}, { duration: 1, x: "60vw", opacity: 1},"<+0.5")
+				// } else {
+				// 	solutionsTl.fromTo('.solutions-phone', 4, { x: "10%", transformOrigin: "center", width:"80vw"}, { duration: 4, x: "100vw"})
+				// 	solutionsTl.fromTo('.solutions-laptop', 3, { opacity: 0, position: "absolute", maxWidth: "none", width: "130vw"}, { duration: 3, opacity: 1},"<+0.5")
+				// 	solutionsTl.fromTo('.solutions-laptop', 1, {x: "60vw", y: "-20vh"}, { duration: 1, x: "180vw"})
 
-				}
+				// }
 			
 
-				solutionsTl.from('.section-solutions .section-title', 2, {y: "25px", opacity: 0},"<+0.5")
-				.fromTo('.section-solutions .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<+0.5")
-				.from('.solution-cta', 1, { duration: 1, x: "-30", opacity: 0} )
-				.to('.section-solutions .waves', 3, {zIndex:5, duration: 2})
-				.to('.section-solutions .waves', 3, {height: '105%', duration: 5})
-				.to('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', 1, { y:100 },"<+1")
-				.set('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', {autoAlpha: 0 })
+				// solutionsTl.from('.section-solutions .section-title', 2, {y: "25px", opacity: 0},"<+0.5")
+				// .fromTo('.section-solutions .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<+0.5")
+				// .from('.solution-cta', 1, { duration: 1, x: "-30", opacity: 0} )
+				// .to('.section-solutions .waves', 3, {zIndex:5, duration: 2})
+				// .to('.section-solutions .waves', 3, {height: '105%', duration: 5})
+				// .to('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', 1, { y:100 },"<+1")
+				// .set('.section-solutions .section-title, .solution-picture, .solution-body, .solution-details ', {autoAlpha: 0 })
 
-				.fromTo('.section-solutions .waves', 3, {position: 'absolute'}, {position: 'fixed'})
+				// .fromTo('.section-solutions .waves', 3, {position: 'absolute'}, {position: 'fixed'})
 
 
 
@@ -288,104 +346,104 @@
 
 
 
-				let solutionsScene = new ScrollMagic.Scene({
-					triggerElement:  '.section-solutions',
-					triggerHook: 0,
-					duration: "380%"
-				})
+				// let solutionsScene = new ScrollMagic.Scene({
+				// 	triggerElement:  '.section-solutions',
+				// 	triggerHook: 0,
+				// 	duration: "380%"
+				// })
 
-				.setTween(solutionsTl)
-				.setPin('.section-solutions', {pushFollowers: false})
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
-					solutionWave.play();
-					solutionWave2.play();
-				})
-				.on("leave", ()=>{
+				// .setTween(solutionsTl)
+				// .setPin('.section-solutions', {pushFollowers: false})
+				// //.addIndicators()
+				// .addTo(controller)
+				// .on("enter", ()=>{
+				// 	solutionWave.play();
+				// 	solutionWave2.play();
+				// })
+				// .on("leave", ()=>{
 					
-				})
+				// })
 
-				// --------------------- SPACER -----------------------
+				// // --------------------- SPACER -----------------------
 
-				let solutionsSPACERScene = new ScrollMagic.Scene({
-					triggerElement:  '.solutions-space-holder',
-					triggerHook: 0,
-					duration: "100%"
-				})
-				.setPin('.solutions-space-holder')
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
-					solutionWave.play();
+				// let solutionsSPACERScene = new ScrollMagic.Scene({
+				// 	triggerElement:  '.solutions-space-holder',
+				// 	triggerHook: 0,
+				// 	duration: "100%"
+				// })
+				// .setPin('.solutions-space-holder')
+				// //.addIndicators()
+				// .addTo(controller)
+				// .on("enter", ()=>{
+				// 	solutionWave.play();
 
-				})
-				.on("leave", ()=>{
-					// gsap.fromTo('.section-solutions .waves', 3, {position: 'fixed'}, {position: 'absolute'})
+				// })
+				// .on("leave", ()=>{
+				// 	// gsap.fromTo('.section-solutions .waves', 3, {position: 'fixed'}, {position: 'absolute'})
 
-				})
+				// })
 
 
-				// ----------------- STORIES --------------------------
+				// // ----------------- STORIES --------------------------
 
-				let storiesTitle = document.querySelector('.section-stories .story-title');
-				let storiesLines = Splitting({ target: storiesTitle, by: 'lines' });
+				// let storiesTitle = document.querySelector('.section-stories .story-title');
+				// let storiesLines = Splitting({ target: storiesTitle, by: 'lines' });
 
-				storiesLines.forEach((splitResult) => {
-					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<h3 class="story-title m-0">
-						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
-					</span>`).join('')}
-					</h3>`).join('');
-					splitResult.el.innerHTML = wrappedLines;
-				})
+				// storiesLines.forEach((splitResult) => {
+				// 	const wrappedLines = splitResult.lines.map((wordsArr) => `
+				// 	<h3 class="story-title m-0">
+				// 		${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+				// 	</span>`).join('')}
+				// 	</h3>`).join('');
+				// 	splitResult.el.innerHTML = wrappedLines;
+				// })
 
-				let storiesBody = document.querySelector('.section-stories .story-body');
-				let storiesLines2 = Splitting({ target: storiesBody, by: 'lines' });
+				// let storiesBody = document.querySelector('.section-stories .story-body');
+				// let storiesLines2 = Splitting({ target: storiesBody, by: 'lines' });
 
 				
-				storiesLines2.forEach((splitResult) => {
-					const wrappedLines = splitResult.lines.map((wordsArr) => `
-					<p class="story-body m-0">
-						${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
-					</span>`).join('')}
-					</p>`).join('');
-					splitResult.el.innerHTML = wrappedLines;
-				})
+				// storiesLines2.forEach((splitResult) => {
+				// 	const wrappedLines = splitResult.lines.map((wordsArr) => `
+				// 	<p class="story-body m-0">
+				// 		${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace"> 
+				// 	</span>`).join('')}
+				// 	</p>`).join('');
+				// 	splitResult.el.innerHTML = wrappedLines;
+				// })
 
 
-				let storiesTl = gsap.timeline()
+				// let storiesTl = gsap.timeline()
 
-				storiesTl.from('.section-stories .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
+				// storiesTl.from('.section-stories .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
 
-				.to('.section-stories  .scrolling-text', 6, {x: "-100%", duration: 6}, "<")
-				.fromTo('.section-stories .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<0.5")
-				.fromTo('.story-picture img', 1, {y:'100%', overflow:'hidden'}, { duration: 2, y:0}, "<0.25")
+				// .to('.section-stories  .scrolling-text', 6, {x: "-100%", duration: 6}, "<")
+				// .fromTo('.section-stories .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "<0.5")
+				// .fromTo('.story-picture img', 1, {y:'100%', overflow:'hidden'}, { duration: 2, y:0}, "<0.25")
 
-				.to('.section-stories  .scrolling-text', 6, {x: "-200%", duration: 3} )
-				.to('.section-stories .section-title', 2, {y: "-25px", opacity: 0, duration: 2},"<0.75")
-				.to('.section-stories .word', 1, {y:-100, overflow:'hidden', transformOrigin: "center top", duration: 2.5,}, "<0.5")
-				.to('.story-picture img', 1, {y:'-100%', transformOrigin: "center top", overflow:'hidden', duration: 5.5}, "<0.25")
+				// .to('.section-stories  .scrolling-text', 6, {x: "-200%", duration: 3} )
+				// .to('.section-stories .section-title', 2, {y: "-25px", opacity: 0, duration: 2},"<0.75")
+				// .to('.section-stories .word', 1, {y:-100, overflow:'hidden', transformOrigin: "center top", duration: 2.5,}, "<0.5")
+				// .to('.story-picture img', 1, {y:'-100%', transformOrigin: "center top", overflow:'hidden', duration: 5.5}, "<0.25")
 
 
-				let storiesScene = new ScrollMagic.Scene({
-					triggerElement:  '.section-stories',
-					triggerHook: 0,
-					duration: "300%"
-				})
+				// let storiesScene = new ScrollMagic.Scene({
+				// 	triggerElement:  '.section-stories',
+				// 	triggerHook: 0,
+				// 	duration: "300%"
+				// })
 
-				.setTween(storiesTl)
-				.setPin('.section-stories')
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
+				// .setTween(storiesTl)
+				// .setPin('.section-stories')
+				// //.addIndicators()
+				// .addTo(controller)
+				// .on("enter", ()=>{
 
-				})
-				.on("leave", ()=>{
+				// })
+				// .on("leave", ()=>{
 	
-					// solutionWave.pause();
-					// solutionWave2.pause();
-				})
+				// 	// solutionWave.pause();
+				// 	// solutionWave2.pause();
+				// })
 
 
 
@@ -393,29 +451,29 @@
 
 
 
-				let contactTl = gsap.timeline()
+				// let contactTl = gsap.timeline()
 
-				contactTl.from('.section-contact .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
+				// contactTl.from('.section-contact .section-title', 2, {y: "25px", opacity: 0},"<-0.5")
 
-				.fromTo('.section-contact .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-0.5")
+				// .fromTo('.section-contact .word', 1, {y:100, overflow:'hidden'}, { duration: 1, y:0, stagger: 0.10}, "-0.5")
 
 
-				let contactScene = new ScrollMagic.Scene({
-					triggerElement:  '.section-contact',
-					triggerHook: 0,
-					duration: "30%"
-				})
+				// let contactScene = new ScrollMagic.Scene({
+				// 	triggerElement:  '.section-contact',
+				// 	triggerHook: 0,
+				// 	duration: "30%"
+				// })
 
-				.setTween(contactTl)
-				.setPin('.section-contact')
-				//.addIndicators()
-				.addTo(controller)
-				.on("enter", ()=>{
+				// .setTween(contactTl)
+				// .setPin('.section-contact')
+				// //.addIndicators()
+				// .addTo(controller)
+				// .on("enter", ()=>{
 
-				})
-				.on("leave", ()=>{
+				// })
+				// .on("leave", ()=>{
 
-				})
+				// })
 
 
 				
@@ -477,45 +535,45 @@
 
 		function pageEffects() {
 
-			 heroWave = $('#hero-waves').wavify({
-				height: 80,
-				bones: 4,
-				amplitude: 60,
-				color: 'rgb(237, 28, 36, 1)',
-				speed: .15
-			});
+			//  heroWave = $('#hero-waves').wavify({
+			// 	height: 80,
+			// 	bones: 4,
+			// 	amplitude: 60,
+			// 	color: 'rgb(237, 28, 36, 1)',
+			// 	speed: .15
+			// });
 
-			 heroWave2 = $('#hero-waves2').wavify({
-				height: 60,
-				bones: 3,
-				amplitude: 40,
-				color: 'rgb(167, 36, 41, 0.8)',
-				speed: .25
-			});
+			//  heroWave2 = $('#hero-waves2').wavify({
+			// 	height: 60,
+			// 	bones: 3,
+			// 	amplitude: 40,
+			// 	color: 'rgb(167, 36, 41, 0.8)',
+			// 	speed: .25
+			// });
 
-			 aboutWave = $('#about-waves').wavify({
-				height: 80,
-				bones: 4,
-				amplitude: 60,
-				color: 'rgb(237, 28, 36, 1)',
-				speed: .15
-			});
+			//  aboutWave = $('#about-waves').wavify({
+			// 	height: 80,
+			// 	bones: 4,
+			// 	amplitude: 60,
+			// 	color: 'rgb(237, 28, 36, 1)',
+			// 	speed: .15
+			// });
 
-			 solutionWave = $('#solution-waves').wavify({
-				height: 80,
-				bones: 4,
-				amplitude: 60,
-				color: 'rgb(209 23 23)',
-				speed: .15
-			});
+			//  solutionWave = $('#solution-waves').wavify({
+			// 	height: 80,
+			// 	bones: 4,
+			// 	amplitude: 60,
+			// 	color: 'rgb(209 23 23)',
+			// 	speed: .15
+			// });
 
-			 solutionWave2 = $('#solution-waves2').wavify({
-				height: 60,
-				bones: 3,
-				amplitude: 40,
-				color: 'rgb(237 28 36)',
-				speed: .25
-			});
+			//  solutionWave2 = $('#solution-waves2').wavify({
+			// 	height: 60,
+			// 	bones: 3,
+			// 	amplitude: 40,
+			// 	color: 'rgb(237 28 36)',
+			// 	speed: .25
+			// });
 
 		}
 

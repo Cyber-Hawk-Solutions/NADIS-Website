@@ -1,35 +1,143 @@
 ---
 layout: default
-event-pos: 90
+
+
+
 ---
 
-<!-- Page Loader, stretched (body) ============================================= -->
-<!-- Document Wrapper ============================================= -->
-<div id="wrapper" class="clearfix">
+	<div class="img-cut img-cut-1 img-overlay">
+		<img src="{{ 'assets/images/portfolio/masks.jpg' | relative_url}}" alt="">
+	</div>
+	<section class="section-horizontal about-section">
 
-	<!-- LAYERS -->
+		<div class="about-section-content">
+			<div class="d-flex align-items-center flex-column">
+				<h5 class="text-muted mb-3">The Owner</h5>
+				<h1 class="name m-0">Rogierre Emmanuel</h1>				
+			</div>
 
-	<!-- BACKGROUND VIDEO LAYER -->
+			<div class="info">
+				<img src="{{ 'assets/images/portfolio/profile.jpg' | relative_url}}" alt="">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo tortor leo viverra pellentesque at sit volutpat enim ultrices. Vitae parturient fames aenean integer cras justo, mauris lacus. Quis ac dictumst at at sit. Id parturient consectetur integer risus tristique. Nibh ornare bibendum euismod facilisi bibendum nunc, consequat, aliquam. Duis eros, quisque vestibulum sapien leo, et a.
+				</p>
+			</div>
+			<div class="footer">
 
+			</div>
 
-	<!-- END REVOLUTION SLIDER -->
+		</div>
+	</section>
+	<section class="section-horizontal showcase-section img-overlay">
+		<img src="{{ 'assets/images/portfolio/competition2.jpg' | relative_url}}" alt="">
+	</section>
+	<section class="section-horizontal portfolio-section">
 
-	<!-- Content
-		============================================= -->
+		{% assign work = site.sections | where: "_title", "Work" | first %}
 
+		<div class="portfolio-section-slice slice-1">
+			<div class=" portfolio-row row1 row">
+				{% assign row = work.slice1.images | | slice: 0, 2 %}
+				{% for item in row %}
+				<div class="col-6 portfolio-item">
+					<img src="{{ item.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="portfolio-row row2 row">
+				<div class="col-12 portfolio-item">
+					{% assign title = work.slice1.featured %}
+					<img src="{{ title.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
+				</div>	
+			</div>
+			<div class="portfolio-row row3 row">
+				{% assign row = work.slice1.images | | slice: 2, 2 %}
+				{% for item in row %}
+				<div class="col-6 portfolio-item">
+					<img src="{{ item.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+				</div>
+				{% endfor %}
+			</div>			
+		</div>
 
+		<div class="portfolio-section-slice slice-2">
+			<div class="portfolio-row row1 row">
+				<div class="col-12 portfolio-item">
+					<div class="portfolio-item-overlay"><h5>Creative <strong>Work</strong></h5></div>
+				</div>
+			</div>
+			<div class=" portfolio-row row2 row">
+				{% assign row = work.slice1.images | | slice: 0, 2 %}
+				{% for item in row %}
+				<div class="col-6 portfolio-item">
+					<img src="{{ item.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class=" portfolio-row row2 row">
+				<div class="col-12 portfolio-item">
+					{% assign title = work.slice2.featured %}
+					<img src="{{ title.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
+				</div>	
+			</div>	
+		</div>
 
-	<!-- About begins-->
+		<div class="portfolio-section-slice slice-3">
+			<div class=" portfolio-row row1 row">
+				{% assign row = work.slice3.images | | slice: 0, 2 %}
+				{% for item in row %}
+				<div class="col-6 portfolio-item">
+					<img src="{{ item.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="portfolio-row row2 row">
+				<div class="col-12 portfolio-item">
+					{% assign title = work.slice3.featured %}
+					<img src="{{ title.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
+				</div>
+			</div>
+			<div class="portfolio-row row3 row">
+				{% assign row = work.slice3.images | | slice: 2, 2 %}
+				{% for item in row %}
+				<div class="col-6 portfolio-item">
+					<img src="{{ item.img }}" alt="">
+					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+				</div>
+				{% endfor %}
+			</div>			
+		</div>
 
-	{% include about.html %}
+	</section>
+	<section class="section-horizontal contact-section">
+		<div class="contact-section-content">
+			<h2 class="contact-section-title m-0 mb-5">Have a project? <strong>Let’s Work.</strong></h2>				
+			<div class="buttons">
+				<div class="row">
+					<button class="btn btn-primary color-1">I need help with branding</button>
+					<button class="btn btn-primary color-2">I need to liven up my walls</button>					
+				</div>
 
-	{% include solutions.html %}
+				<div class="row">
+					<button class="btn btn-primary color-3">I need an outfit for my birthday</button>
+					<button class="btn btn-primary color-4">I Need something else</button>					
+				</div>
 
+					
+			</div>
 
-	{% include stories.html %}
-	
+			<h3 class="mt-4">"Where Intellegence meets Creativity"</h3>
 
-	<section class="section-contact">
+		</div>
+	</section>
+
+	<!-- <section class="section-contact">
 		<div id="contact" class="m-0 contact-area">
 			<div class="contact-inner area-padding">
 				<div class="contact-overly"></div>
@@ -42,7 +150,6 @@ event-pos: 90
 						</div>
 					</div>
 					<div class="row">
-						<!-- Start contact icon column -->
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="contact-icon text-center">
 								<div class="single-icon">
@@ -53,7 +160,7 @@ event-pos: 90
 								</div>
 							</div>
 						</div>
-						<!-- Start contact icon column -->
+
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="contact-icon text-center">
 								<div class="single-icon">
@@ -64,7 +171,7 @@ event-pos: 90
 								</div>
 							</div>
 						</div>
-						<!-- Start contact icon column -->
+
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="contact-icon text-center">
 								<div class="single-icon">
@@ -76,17 +183,10 @@ event-pos: 90
 								</div>
 							</div>
 						</div>
-					</div>
-				
+					</div>	
 		
 				</div>
 			</div>
 		</div>		
-	</section>
+	</section> -->
 
-
-
-	<!-- Services Begins -->
-	<!-- import computational-thinking eplanation.html -->
-	<!-- Services Ends  -->
-</div>

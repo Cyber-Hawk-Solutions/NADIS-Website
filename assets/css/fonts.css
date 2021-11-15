@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------
-    Fonts
+  Fonts
 
-    Replace your Fonts as necessary
+  Replace your Fonts as necessary
 -----------------------------------------------------------------*/
 
 
@@ -11,7 +11,10 @@ h3,
 h4,
 h5,
 h6,
-#logo,
+#logo {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
 #primary-menu ul li > a,
 #primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column > li.mega-menu-title > a,
 #top-search form input,
@@ -44,8 +47,49 @@ small,
 .nav-tree ul ul a,
 .font-body,
 p,
-span { font-family: 'Open Sans', 'Poppins', sans-serif; }
+span { font-family: 'Avenir', sans-serif; }
 
 /* p,
 span { font-family: 'Roboto', sans-serif !important; } */
 
+@font-face {
+  font-family: 'Champagne & Limousines', sans-serif;
+  src: url('/assets/fonts/Champagne_Limousines/Champagne & Limousines.ttf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+font-family: 'Champagne & Limousines', sans-serif;
+  src: url('/assets/fonts/Champagne_Limousines/Champagne & Limousines Bold.ttf');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Avenir', sans-serif;
+  src: url('/assets/fonts/Avenir/AvenirLTStd-Book.otf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Avenir', sans-serif;
+  src: url('/assets/fonts/Avenir/AvenirLTStd-Roman.otf');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Avenir', sans-serif;
+  src: url('/assets/fonts/Avenir/AvenirLTStd-Black.otf');
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-2 {
+  font-family: 'Barlow', sans-serif;
+}
+
+.font-3 {
+  font-family: 'Barlow Condensed', sans-serif;}
