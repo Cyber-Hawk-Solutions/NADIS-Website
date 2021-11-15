@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: NADIS
-email: hello@nadis.app
+title: Prodigii Concepts
+email: hello@prodigiiconcepts.com
 
 #>- # this means to ignore newlines until "baseurl:"
  
@@ -22,7 +22,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 address: Antigua and Barbuda Science And Innovation Park
 phone: +1268-7893698
-description: Making Nature More Predictable  
+description: Uniquely Crafted Antiguan Designs 
 phone-alt: 
 fax: 
 theme-color: "#ED1C24"
