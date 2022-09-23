@@ -1,141 +1,194 @@
 ---
 layout: default
 
-
-
 ---
 
-	<div class="img-cut img-cut-1 img-overlay">
-		<img src="{{ 'assets/images/portfolio/masks.jpg' | relative_url}}" alt="">
+{%- comment -%} {%- endcomment -%}
+
+{% include home-desktop.html %}
+
+{% assign hero = site.sections | where: "_title", "Home" | first %}
+
+<div class="site-mobile d-lg-none d-md-flex">
+<section class="hero vh-100">
+
+	<p class="hero-bg-scroller">ProdiGii Concepts</p>
+
+	
+	<div class="particles-scroller">
+		<div class="big-particles-1 particles-left">
+			<div class="small-bottom"></div>
+			<div class="base"></div>
+			<div class="small-top"></div>
+		</div>
+
+		<div class="big-particles-1 particles-position-2 particles-right">
+			<div class="small-bottom"></div>
+			<div class="base"></div>
+			<div class="small-top"></div>
+		</div>
 	</div>
-	<section class="section-horizontal about-section">
 
-		<div class="about-section-content">
-			<div class="d-flex align-items-center flex-column">
-				<h5 class="text-muted mb-3">The Owner</h5>
-				<h1 class="name m-0">Rogierre Emmanuel</h1>				
+	<div class="h-100 d-flex flex-row ">
+
+		<div class="row d-flex align-content-center flex-row">
+			<div class="hero-img-container vw-100 d-flex justify-content-center my-0 ml-4">
+					<img class="hero-logo" style="width: 80%;" src="{{ 'assets/images/logos/PRODIGII LOGO_PRODIGII C WHITE.png' | relative_url}}" />
 			</div>
 
-			<div class="info">
-				<img src="{{ 'assets/images/portfolio/profile.jpg' | relative_url}}" alt="">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo tortor leo viverra pellentesque at sit volutpat enim ultrices. Vitae parturient fames aenean integer cras justo, mauris lacus. Quis ac dictumst at at sit. Id parturient consectetur integer risus tristique. Nibh ornare bibendum euismod facilisi bibendum nunc, consequat, aliquam. Duis eros, quisque vestibulum sapien leo, et a.
-				</p>
-			</div>
-			<div class="footer">
-
-			</div>
-
-		</div>
-	</section>
-	<section class="section-horizontal showcase-section img-overlay">
-		<img src="{{ 'assets/images/portfolio/competition2.jpg' | relative_url}}" alt="">
-	</section>
-	<section class="section-horizontal portfolio-section">
-
-		{% assign work = site.sections | where: "_title", "Work" | first %}
-
-		<div class="portfolio-section-slice slice-1">
-			<div class=" portfolio-row row1 row">
-				{% assign row = work.slice1.images | | slice: 0, 2 %}
-				{% for item in row %}
-				<div class="col-6 portfolio-item">
-					<img src="{{ item.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+			<div class="hero-feature-carousel row d-flex align-items-center flex-row flex-nowrap ml-5 my-5">
+				<div class="col col-9 mr-2">
+					<h1 class="hero-title text-center" >
+						Uniquely Crafted Antiguan Designs
+					</h1>
 				</div>
-				{% endfor %}
-			</div>
-			<div class="portfolio-row row2 row">
-				<div class="col-12 portfolio-item">
-					{% assign title = work.slice1.featured %}
-					<img src="{{ title.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
-				</div>	
-			</div>
-			<div class="portfolio-row row3 row">
-				{% assign row = work.slice1.images | | slice: 2, 2 %}
-				{% for item in row %}
-				<div class="col-6 portfolio-item">
-					<img src="{{ item.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+
+				{% for item in hero.featuredNav %}
+
+				<div class="col col-11 mx-2 hero-img-framed d-flex justify-content-center align-items-end">
+					<img class="img-fluid" src="{{ item.img }}" alt="">
+					<button type="button" class="btn btn-primary hero-button">{{ item.label }}</button>
 				</div>
+
 				{% endfor %}
-			</div>			
+
+			</div>
 		</div>
 
-		<div class="portfolio-section-slice slice-2">
-			<div class="portfolio-row row1 row">
-				<div class="col-12 portfolio-item">
-					<div class="portfolio-item-overlay"><h5>Creative <strong>Work</strong></h5></div>
-				</div>
+
+	</div>
+
+</section>
+
+<section class="about-section py-5">
+
+	<div class="about-section-content">
+		<div class="d-flex align-items-center flex-column">
+			<h5 class="text-muted mb-3 mt-5 text-center">The Owner</h5>
+			<h1 class="name mb-5 text-center">Rogierre Emmanuel</h1>				
+		</div>
+
+		<div class="info row m-0">
+			<img class="" src="{{ 'assets/images/portfolio/profile.jpg' | relative_url}}" alt="">
+			<p class="col-lg-6 col-md-12 col-sm-12 mt-5 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo tortor leo viverra pellentesque at sit volutpat enim ultrices. Vitae parturient fames aenean integer cras justo, mauris lacus. Quis ac dictumst at at sit. Id parturient consectetur integer risus tristique. Nibh ornare bibendum euismod facilisi bibendum nunc, consequat, aliquam. Duis eros, quisque vestibulum sapien leo, et a.
+			</p>
+		</div>
+		<div class="footer">
+
+		</div>
+
+	</div>
+</section>
+
+<section class="portfolio-section">
+
+	{% assign work = site.sections | where: "_title", "Work" | first %}
+
+	<div class="portfolio-section-slice slice-1">
+		<div class=" portfolio-row row1 row">
+			{% assign row = work.slice1.images | | slice: 0, 2 %}
+			{% for item in row %}
+			<div class="col-6 portfolio-item">
+				<img src="{{ item.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
 			</div>
-			<div class=" portfolio-row row2 row">
-				{% assign row = work.slice1.images | | slice: 0, 2 %}
-				{% for item in row %}
-				<div class="col-6 portfolio-item">
-					<img src="{{ item.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
-				</div>
-				{% endfor %}
-			</div>
-			<div class=" portfolio-row row2 row">
-				<div class="col-12 portfolio-item">
-					{% assign title = work.slice2.featured %}
-					<img src="{{ title.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
-				</div>	
+			{% endfor %}
+		</div>
+		<div class="portfolio-row row2 row">
+			<div class="col-12 portfolio-item">
+				{% assign title = work.slice1.featured %}
+				<img src="{{ title.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
 			</div>	
 		</div>
+		<div class="portfolio-row row3 row">
+			{% assign row = work.slice1.images | | slice: 2, 2 %}
+			{% for item in row %}
+			<div class="col-6 portfolio-item">
+				<img src="{{ item.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+			</div>
+			{% endfor %}
+		</div>			
+	</div>
 
-		<div class="portfolio-section-slice slice-3">
-			<div class=" portfolio-row row1 row">
-				{% assign row = work.slice3.images | | slice: 0, 2 %}
-				{% for item in row %}
-				<div class="col-6 portfolio-item">
-					<img src="{{ item.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
-				</div>
-				{% endfor %}
+	<div class="portfolio-section-slice slice-2">
+		<div class="portfolio-row row1 row">
+			<div class="col-12 portfolio-item">
+				<div class="portfolio-item-overlay"><h5>Creative <strong>Work</strong></h5></div>
 			</div>
-			<div class="portfolio-row row2 row">
-				<div class="col-12 portfolio-item">
-					{% assign title = work.slice3.featured %}
-					<img src="{{ title.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
-				</div>
+		</div>
+		<div class=" portfolio-row row2 row">
+			{% assign row = work.slice1.images | | slice: 0, 2 %}
+			{% for item in row %}
+			<div class="col-6 portfolio-item">
+				<img src="{{ item.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
 			</div>
-			<div class="portfolio-row row3 row">
-				{% assign row = work.slice3.images | | slice: 2, 2 %}
-				{% for item in row %}
-				<div class="col-6 portfolio-item">
-					<img src="{{ item.img }}" alt="">
-					<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
-				</div>
-				{% endfor %}
-			</div>			
+			{% endfor %}
+		</div>
+		<div class=" portfolio-row row2 row">
+			<div class="col-12 portfolio-item">
+				{% assign title = work.slice2.featured %}
+				<img src="{{ title.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
+			</div>	
+		</div>	
+	</div>
+
+	<div class="portfolio-section-slice slice-3">
+		<div class=" portfolio-row row1 row">
+			{% assign row = work.slice3.images | | slice: 0, 2 %}
+			{% for item in row %}
+			<div class="col-6 portfolio-item">
+				<img src="{{ item.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="portfolio-row row2 row">
+			<div class="col-12 portfolio-item">
+				{% assign title = work.slice3.featured %}
+				<img src="{{ title.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ title.label }}</h5></div>
+			</div>
+		</div>
+		<div class="portfolio-row row3 row">
+			{% assign row = work.slice3.images | | slice: 2, 2 %}
+			{% for item in row %}
+			<div class="col-6 portfolio-item">
+				<img src="{{ item.img }}" alt="">
+				<div class="portfolio-item-overlay"><h5>{{ item.label }}</h5></div>
+			</div>
+			{% endfor %}
+		</div>			
+	</div>
+
+</section>
+<section class="contact-section">
+	<div class="contact-section-content p-4 m-5">
+		<h2 class="contact-section-title m-0 mb-3">Have a project?</h2>			
+		<h2 class="contact-section-title m-0 mb-5"><strong>Let’s Work.</strong></h2>				
+	
+		<div class="buttons">
+			<div class="row">
+				<button class="btn btn-primary color-1">I need help with branding</button>
+				<button class="btn btn-primary color-2">I need to liven up my walls</button>					
+			</div>
+
+			<div class="row">
+				<button class="btn btn-primary color-1">I need an outfit for my birthday</button>
+				<button class="btn btn-primary color-2">I Need something else</button>					
+			</div>
+
+				
 		</div>
 
-	</section>
-	<section class="section-horizontal contact-section">
-		<div class="contact-section-content">
-			<h2 class="contact-section-title m-0 mb-5">Have a project? <strong>Let’s Work.</strong></h2>				
-			<div class="buttons">
-				<div class="row">
-					<button class="btn btn-primary color-1">I need help with branding</button>
-					<button class="btn btn-primary color-2">I need to liven up my walls</button>					
-				</div>
+		<h3 class="mt-4">"Where Intellegence meets Creativity"</h3>
 
-				<div class="row">
-					<button class="btn btn-primary color-3">I need an outfit for my birthday</button>
-					<button class="btn btn-primary color-4">I Need something else</button>					
-				</div>
+	</div>
+</section>
 
-					
-			</div>
-
-			<h3 class="mt-4">"Where Intellegence meets Creativity"</h3>
-
-		</div>
-	</section>
 
 	<!-- <section class="section-contact">
 		<div id="contact" class="m-0 contact-area">
@@ -189,4 +242,5 @@ layout: default
 			</div>
 		</div>		
 	</section> -->
+</div>
 

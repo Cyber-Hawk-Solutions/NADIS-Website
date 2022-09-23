@@ -153,43 +153,90 @@
 
 				//  ---- HERO  ------------------
 
-
+				let mainEffectsCOntainer = ".scroll-effects ";
 
 				let hometl = gsap.timeline({
 					scrollTrigger: {
-						trigger: ".horizontal-row",
+						trigger: mainEffectsCOntainer,
 						pin: true,
 						scrub: 1,
 						// base vertical scrolling on how wide the container is so it feels more natural.
-						end: "+=300%",
+						end: "+=490%",
+						markers: true,
+						toggleActions: "play reset none reset",
+						scroller: "body"
+					}
+				})
+
+				.to(mainEffectsCOntainer + '.hero-feature-carousel', {
+					xPercent: "-100", duration: 5
+				})
+				.to(mainEffectsCOntainer + '.hero-bg-scroller', {
+					xPercent: "-80", duration: 5
+				}, "<")
+				.to(mainEffectsCOntainer + '.particles-scroller .small-top, .particles-scroller .small-bottom', {
+					scale: 1, duration: 5, opacity: 0
+				}, "<")
+
+				.to(mainEffectsCOntainer + '.img-cut-1', { x: "-110vw", duration: 3}, ">-2.2")
+				.to(mainEffectsCOntainer + '.img-cut-1', { width:0, minWidth: 0, duration: 2.5}, "<+1")
+
+				.to(mainEffectsCOntainer + '.about-section', { x: "-100%", duration: 2.75, ease:Linear.easeNone}, "<-1.25")
+
+				.to(mainEffectsCOntainer + '.about-section', { x: "-200%", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to(mainEffectsCOntainer + '.showcase-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
+
+				.to(mainEffectsCOntainer + '.showcase-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to(mainEffectsCOntainer + '.portfolio-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0")
+				
+				.to(mainEffectsCOntainer + '.portfolio-section', { x: "-225vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				.to(mainEffectsCOntainer + '.contact-section', { x: "-120vw", duration: 2.75, ease:Linear.easeNone}, "<-0.05")
+				.to(mainEffectsCOntainer + '.contact-section', { x: "-250vw", duration: 2.75, ease:Linear.easeNone}, ">+0.2")
+
+				// .to(mainEffectsCOntainer + '.contact-section', { x: "-275vw", duration: 2.75, ease:Linear.easeNone}, "<+1")
+
+				
+				
+				let mobileContainer = ".site-mobile ";
+
+				let mobileHometl = gsap.timeline({
+					scrollTrigger: {
+						trigger: mobileContainer + '.hero',
+						pin: true,
+						scrub: 1,
+						// base vertical scrolling on how wide the container is so it feels more natural.
+						end: "+=100%",
+						markers: true,
+						scroller: "body"
+					}
+				})
+
+				.to(mobileContainer + '.hero-feature-carousel', {
+					xPercent: "-380", duration: 5
+				})
+				.to(mobileContainer  + '.hero-bg-scroller', {
+					xPercent: "-80", duration: 5
+				}, "<")
+				.to(mobileContainer + '.particles-scroller .small-top, .particles-scroller .small-bottom', {
+					scale: 1, duration: 5, opacity: 0
+				}, "<")
+
+				let portfolioTl = gsap.timeline({
+					scrollTrigger: {
+						trigger: mobileContainer + '.portfolio-section',
+						pin: true,
+						scrub: 1,
+						// base vertical scrolling on how wide the container is so it feels more natural.
+						start: "top top",
+						end: "+=100%",
 						markers: true,
 					}
 				})
 
-				.to('.hero-feature-carousel', {
-					xPercent: "-100", duration: 5
-				})
-				.to('.hero-bg-scroller', {
-					xPercent: "-80", duration: 5
-				}, "<")
-				.to('.particles-scroller .small-top, .particles-scroller .small-bottom', {
-					scale: 1, duration: 5, opacity: 0
-				}, "<")
-
-				.to('.img-cut-1', { x: "-110vw", duration: 3}, ">-2.2")
-				.to('.img-cut-1', { width:0, minWidth: 0, duration: 2.5}, "<+1")
-
-				.to('.about-section', { x: "-100%", duration: 2.75, ease:Linear.easeNone}, "<-1.25")
-
-				.to('.about-section', { x: "-200%", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
-				.to('.showcase-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
-
-				.to('.showcase-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
-				.to('.portfolio-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0")
+				.to(mobileContainer + '.portfolio-section .portfolio-section-slice', { x: "-190vw", duration: 2.75, ease:Linear.easeNone}, "<0")
 				
-				.to('.portfolio-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
-				.to('.contact-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
-
+				// .to(mobileContainer + '.portfolio-section', { x: "-200vw", duration: 2.75, ease:Linear.easeNone}, ">+0.1")
+				// .to(mobileContainer + '.contact-section', { x: "-100vw", duration: 2.75, ease:Linear.easeNone}, "<+0.1")
 
 
 				// let sections = gsap.utils.toArray(".section-horizontal");

@@ -57,6 +57,7 @@ body {
 	font-weight: bold;
 	color: rgba(255, 255, 255, 0.1);
 	mix-blend-mode: overlay;
+	pointer-events: none;
 	/* filter: drop-shadow(-2px 4px 6px rgba(0, 0, 0, 0.2)); */
 }
 
@@ -182,7 +183,7 @@ body {
     flex-wrap: nowrap;
     height: 100%;
 		width: 33vw;
-    min-width: 500px;
+    min-width: 350px;
 	}
 
 	.col-6 {
@@ -273,6 +274,13 @@ body {
 				}
 			}
 
+			
+			@media (max-width: 1248px) {
+				h5 {
+					font-size: 3.1rem !important;
+				}
+
+			}
 
 		}
 	}
@@ -406,7 +414,18 @@ body {
 			.color-3 {
 				background: #1a80b3;
 			}
-				
+
+			.color-4 {
+				background: #d28012;
+			}
+
+			.color-5 {
+				background: #c93a3a;
+			}
+
+			.row {
+				justify-content: center;
+			}
 			
 		}
 
@@ -423,7 +442,7 @@ body {
 	top: 0;
 	width: 100%;
 	height: 100%;
-
+	pointer-events: none;
 	.big-particles-1, .big-particles-2 {
 
 	}
@@ -435,7 +454,7 @@ body {
     height: 59%;
 		position: relative;
 		transform: rotate(319deg) translate(-1%, -40%);
-		
+		pointer-events: none;
 		.base {
 			background-image: url(/assets/images/particles/bigparticlesbase.svg);
 			background-repeat: no-repeat;
@@ -482,6 +501,7 @@ body {
     left: 59vw;
     top: 0;
     transform: rotate(49deg) translate(10%, -20%);
+		pointer-events: none;
 		.small-bottom {
 			transform-origin: top right;
 		}
@@ -500,8 +520,77 @@ body {
     position: absolute;
     right: 0;
     top: 0;
+		pointer-events: none;
 	}
 
 
 }
 
+.scroll-effects {
+	position: fixed;
+	overflow: hidden;
+	background-color: #FFF;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 400%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	// pointer-events: none;
+} 	
+
+
+
+
+.site-mobile {
+	.hero, .about-section, .portfolio-section, .showcase-section, .contact-section {
+		position:  relative;
+		left: unset ;
+		top: unset;
+		height: unset;
+	}
+
+	.portfolio-section {
+		height: 100vh;
+		max-width: unset;
+		overflow-x: visible;
+
+		.portfolio-section-slice {
+			width: 100vw;
+		}
+	}
+
+	.big-particles-1.particles-left {
+		transform: rotate(319deg) translate(-1%, -40%);
+		.base {
+			top: 118px;
+			left: 83px;
+		}
+		.small-top {
+			left: 1px;
+			top: 118px;
+		}
+	}
+
+	.particles-position-2.particles-right{
+    transform: rotate(49deg) translate(10%, -20%);
+
+		.small-bottom {
+			left: -129px;
+			top: 117px;
+		}
+
+		.base {
+			top: 69px;
+    	left: -121px;
+		}
+
+		.small-top {
+			top: 15px;
+    	left: -79px;
+		}
+	}
+
+
+}
